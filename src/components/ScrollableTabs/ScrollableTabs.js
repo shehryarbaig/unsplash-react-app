@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useScrollableTabsStyle } from './ScrollableTabs.style';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -17,22 +17,22 @@ function a11yProps(index) {
 }
 
 const ScrollableTabs = (props) => {
-  const {topics} = props;
   const classes = useScrollableTabsStyle();
   const history = useHistory();
-  //console.log(history);
   const tabHandler = useSelector(state => state.tabHandler);
   const { activeTab } = tabHandler;
+  const topicsDataSetter = useSelector(state => state.topicsDataSetter);
+  const { topicsData } = topicsDataSetter;
   const dispatch = useDispatch();
 
   const handleChange = (event, activeTabNumber) => {
-    dispatch(changeActiveTab(activeTabNumber));
-    handleTabChange(activeTabNumber, history, dispatch);
+    dispatch(changeActiveTab(activeTabNumber+1));
+    handleTabChange(history, dispatch,topicsData, event.target.innerText);
   };
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
+      <AppBar className={classes.appBar} position="static" color="white">
         <Tabs
           value={activeTab}
           onChange={handleChange}
@@ -40,12 +40,12 @@ const ScrollableTabs = (props) => {
           textColor="primary"
           variant="scrollable"
           scrollButtons="auto"
-          aria-label="scrollable auto tabs example"
+          aria-label="scrollable tabs"
         >
+          <Tab className={classes.tab} label="Home Page" {...a11yProps(0)} />
           {
-          topics && topics.map((topic,index) => {
-            return <Tab label={topic.title} {...a11yProps(index)} />
-            
+          topicsData && topicsData.map((topic,index) => {
+            return <Tab className={classes.tab} label={topic.title} {...a11yProps(index+1)} />
           })}
           
         </Tabs>

@@ -6,6 +6,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import theme from './theme';
 
 const App = props => {
+  
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
@@ -14,7 +15,5 @@ const App = props => {
     </Provider>
   );
 };
-
-
 
 export default App;

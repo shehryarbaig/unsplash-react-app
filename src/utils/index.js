@@ -1,32 +1,19 @@
 import { changeActiveTabUrl } from "../actions";
+import { setTopic } from "../actions";
+import { getTopicImages , getNewTopicImages} from "../actions/topicsImagesSetter";
 
-export const handleTabChange = (activeTabNumber, history, dispatch) => {
-    switch (activeTabNumber) {
-        case 0:
-            dispatch(changeActiveTabUrl("https://google.com"));
-            history.push("/");
-            break;
-        case 1:
-            dispatch(changeActiveTabUrl("https://abc.com"));
-            history.push("/wallpaper");
-            break;
-        case 2:
-            dispatch(changeActiveTabUrl("https://xyz.com"));
-            history.push("/wallpaper1");
-            break;
-        case 3:
-            dispatch(changeActiveTabUrl("https://efg.com"));
-            history.push("/wallpaper2");
-            break;
-        case 4:
-            dispatch(changeActiveTabUrl("https://hij.com"));
-            history.push("/wallpaper3");
-            break;
+export const handleTabChange = (history, dispatch, topicsData, activeTabText) => {
+    topicsData.map(topic => {
+        if(topic.title===activeTabText)
+        {
+            //console.log(activeTabText + "1");
+            //dispatch(changeActiveTabUrl(topic.links.self));
+            history.push(`/${topic.slug}`);
+            dispatch(setTopic(topic));
+            //dispatch(getNewTopicImages(topic.slug));
+        }
+    })
 
-        default:
-            history.push("/");
-            break;
-    }
 }
 
 export const useFetch = async (url) => {
@@ -54,3 +41,7 @@ export const useFetch = async (url) => {
 
     return { response, error };
 };
+
+export const CapitalizeFirstLetterOnly = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    }

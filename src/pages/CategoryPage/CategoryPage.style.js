@@ -1,9 +1,11 @@
-import {makeStyles} from "@material-ui/core";
+import {Grid, makeStyles} from "@material-ui/core";
 import { Block } from "@material-ui/icons";
 
 export const useCategoryPageStyle = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
+        paddingTop: 70,
+        paddingRight: 55,
+        paddingLeft: 55,
     },
     // categoryInfo: {
     //     display: Block,
@@ -15,6 +17,9 @@ export const useCategoryPageStyle = makeStyles((theme) => ({
         textAlign: 'center',
         color: theme.palette.text.secondary,
       },
+      categoryInfoContainer:{
+          marginTop: 20,
+      },
     categoryTitle: {
         fontSize: 46,
         lineHeight: 1.2,
@@ -25,5 +30,8 @@ export const useCategoryPageStyle = makeStyles((theme) => ({
         fontWeight: 400,
         lineHeight: 1.6,
         maxWidth: 620,
+    },
+    imagesGrid:{
+        paddingTop:70,
     }
 }));

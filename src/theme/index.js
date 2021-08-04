@@ -25,6 +25,11 @@ const theme = createTheme({
           'sans-serif',
         ].join(','),
       },
+      palette: {
+          primary:{
+              main: "#111",
+          }
+      }
   });
 
   export default theme;
