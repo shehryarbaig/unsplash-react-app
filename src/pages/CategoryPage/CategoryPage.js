@@ -13,7 +13,6 @@ import { changeActiveTab } from '../../actions';
 const CategoryPage = props => {
     const {topic, topicIndex} = props;
     const classes = useCategoryPageStyle();
-    const tabHandler = useSelector(state => state.tabHandler);
     const dispatch = useDispatch();
     const [isFetching, setIsFetching] = useInfiniteScroll(fetchMoreImages);
 
