@@ -33,5 +33,9 @@ export const useCategoryPageStyle = makeStyles((theme) => ({
     },
     imagesGrid:{
         paddingTop:70,
-    }
+    },
+    circularIcon: {
+        marginLeft: "50%",
+        marginTop: "2%"
+      },
 }));
