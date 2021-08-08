@@ -32,7 +32,7 @@ const ImagesList = props => {
   }
 
   return (
-    <Box sx={{ height: 450, }}>
+    <Box sx={{ height: "100%", }}>
 
       <ImageList style={{ display: "inline-block", columnCount: 3, columnGap: 8 }} variant="masonry">
        
