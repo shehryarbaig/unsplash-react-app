@@ -6,11 +6,27 @@ import Button from '@material-ui/core/Button';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import {useNavBarStyles} from "./NavBar.style"
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getNewQueryImages, setQuery } from '../../actions';
 
 
 
 const NavBar = () => {
   const classes = useNavBarStyles();
+  const [searchQuery,setSearchQuery] = useState("");
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const handleOnClick = (query) => {
+      console.log(query);
+      history.push({
+        pathname: '/search-result',
+        query:query
+    });
+  }
+
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBarContainer}>
@@ -30,10 +46,13 @@ const NavBar = () => {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyPress = {(e)=> e.key === "Enter" ? handleOnClick(searchQuery): null}
+              
             />
           </div>
           </div>
-          <Button className={classes.loginButton}>Login</Button>
+          <Button className={classes.loginButton} >Login</Button>
         </Toolbar>
       </AppBar>
     </div>

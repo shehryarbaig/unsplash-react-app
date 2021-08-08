@@ -8,9 +8,16 @@ export function requestGetTopics() {
     });
 }
 
-export function requestGetTopicImages(topic, imagesCurrrentCount) {
+export function requestGetTopicImages(topic, pageNumber) {
     return axios.request({
         method: 'get',
-        url: `https://api.unsplash.com/topics/${topic}/photos/?page=${imagesCurrrentCount}&client_id=${ACCESS_ID}`
+        url: `https://api.unsplash.com/topics/${topic}/photos/?page=${pageNumber}&client_id=${ACCESS_ID}`
+    });
+}
+
+export function requestGetQueryImages(query, pageNumber) {
+    return axios.request({
+        method: 'get',
+        url: `https://api.unsplash.com/search/photos?page=${pageNumber}&query=${query}&client_id=${ACCESS_ID}`
     });
 }

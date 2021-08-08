@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react';
 import { useFetch } from '../utils';
 import { setTopicsData } from '../actions';
 import { getTopicsData } from '../actions/topicsDataSetter';
+import SearchResult from '../components/SearchResult';
 
 const api = createApi({
     // Don't forget to set your access token here!
@@ -52,10 +53,11 @@ const Routes = props => {
     return (
         <Router>
             <Switch>
-                <PublicRoute exact path="/" render={() => <HomePage name="Shehryar" />} />
+                <PublicRoute exact path="/" render={() => <HomePage name="Shehryar" />} isScrollaleTabs = {true}/>
+                <PublicRoute exact path="/search-result" render={() => <SearchResult />} isScrollaleTabs = {false}/>
                 {
                     topicsData.map((topic, index) => {
-                        return <PublicRoute exact path={`/${topic.slug}`} render={() => <CategoryPage topic = {topic} topicIndex = {index} />} />
+                        return <PublicRoute exact path={`/${topic.slug}`} render={() => <CategoryPage topic = {topic} topicIndex = {index} />} isScrollaleTabs = {true}/>
 
                     })
                 }

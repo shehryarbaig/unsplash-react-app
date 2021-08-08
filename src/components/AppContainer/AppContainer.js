@@ -4,11 +4,11 @@ import ScrollableTabs from '../ScrollableTabs';
 
 const AppContainer = props => {
    
-    const { children } = props;
+    const { isScrollaleTabs, children } = props;
     return (
         <div>
             <NavBar />
-           <ScrollableTabs/>
+           { isScrollaleTabs && <ScrollableTabs/>}
             {children}
         </div>
     );

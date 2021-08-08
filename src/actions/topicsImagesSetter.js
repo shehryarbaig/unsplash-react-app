@@ -14,11 +14,11 @@ export const setNewTopicImages = (newTopicImages) => {
     }
 }
 
-export const getTopicImages = (topic, imagesCurrrentCount) => {
+export const getTopicImages = (topic, pageNumber) => {
     return {
         type: GET_TOPIC_IMAGES,
         topic:topic,
-        imagesCurrrentCount: imagesCurrrentCount
+        pageNumber: pageNumber
     }
 }
 

@@ -1,10 +1,10 @@
 import {Route } from 'react-router-dom';
 import AppContainer from '../components/AppContainer';
 
-const PublicRoute=({render:Component,...rest })=> {
+const PublicRoute=({render:Component, isScrollaleTabs, ...rest })=> {
 	return (
         <Route {...rest} render={(props)=>(
-            <AppContainer>
+            <AppContainer isScrollaleTabs={isScrollaleTabs}>
                 <Component {...props}/>
             </AppContainer>  
         )}/>
