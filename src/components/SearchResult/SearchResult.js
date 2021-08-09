@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchResultStyle } from './SearchResult.style';
 import { Grid } from '@material-ui/core';
@@ -9,7 +8,7 @@ import { getQueryImages } from '../../actions';
 import ImagesList from '../ImagesList';
 import VisibilitySensor from "react-visibility-sensor";
 import { CircularProgress } from '@material-ui/core';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { setQuery, getNewQueryImages } from '../../actions';
 import { capitalizeFirstLetter } from '../../utils';
@@ -19,17 +18,18 @@ const SearchResult = props => {
     const queryImagesData = useSelector(state => state.queryImagesData);
     const { queryImages, query } = queryImagesData;
     const dispatch = useDispatch();
-    const location = useLocation();
+    const params = useParams();
+    console.log(params.searchQuery);
 
     function fetchMoreImages() {
         dispatch(getQueryImages(query, (queryImages.length / 10) + 1));
     }
 
     useEffect(() => {
-        console.log("query:" + location.query)
-        dispatch(setQuery(capitalizeFirstLetter(location.query)));
-        dispatch(getNewQueryImages(location.query));
-    }, [location]);
+        console.log("query:" + params.searchQuery)
+        dispatch(setQuery(capitalizeFirstLetter(params.searchQuery)));
+        dispatch(getNewQueryImages(params.searchQuery));
+    }, [params]);
 
     function onChange(isVisible) {
         if(isVisible)

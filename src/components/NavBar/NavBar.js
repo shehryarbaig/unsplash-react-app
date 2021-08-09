@@ -22,8 +22,7 @@ const NavBar = () => {
   const handleOnClick = (query) => {
       console.log(query);
       history.push({
-        pathname: '/search-result',
-        query:query
+        pathname: `/search-result/${query}`,
     });
   }
 

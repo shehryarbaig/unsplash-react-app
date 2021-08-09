@@ -54,7 +54,7 @@ const Routes = props => {
         <Router>
             <Switch>
                 <PublicRoute exact path="/" render={() => <HomePage name="Shehryar" />} isScrollaleTabs = {true}/>
-                <PublicRoute exact path="/search-result" render={() => <SearchResult />} isScrollaleTabs = {false}/>
+                <PublicRoute exact path="/search-result/:searchQuery" render={() => <SearchResult />} isScrollaleTabs = {false}/>
                 {
                     topicsData.map((topic, index) => {
                         return <PublicRoute exact path={`/${topic.slug}`} render={() => <CategoryPage topic = {topic} topicIndex = {index} />} isScrollaleTabs = {true}/>
