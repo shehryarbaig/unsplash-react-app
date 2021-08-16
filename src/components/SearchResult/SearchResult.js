@@ -8,7 +8,7 @@ import { getQueryImages } from '../../actions';
 import ImagesList from '../ImagesList';
 import VisibilitySensor from "react-visibility-sensor";
 import { CircularProgress } from '@material-ui/core';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { setQuery, getNewQueryImages } from '../../actions';
 import { capitalizeFirstLetter } from '../../utils';
@@ -18,18 +18,26 @@ const SearchResult = props => {
     const queryImagesData = useSelector(state => state.queryImagesData);
     const { queryImages, query } = queryImagesData;
     const dispatch = useDispatch();
-    const params = useParams();
-    console.log(params.searchQuery);
+    //const params = useParams();
+    const location = useLocation();
+    //console.log(params.searchQuery);
+
+    const useQuery = () => {
+        return new URLSearchParams(location.search);
+      }
+
+    const queryParam = useQuery(); 
+    //console.log("q is " + queryParam.get("query"));
 
     function fetchMoreImages() {
         dispatch(getQueryImages(query, (queryImages.length / 10) + 1));
     }
 
     useEffect(() => {
-        console.log("query:" + params.searchQuery)
-        dispatch(setQuery(capitalizeFirstLetter(params.searchQuery)));
-        dispatch(getNewQueryImages(params.searchQuery));
-    }, [params]);
+        console.log("query:" + queryParam.get("query"))
+        dispatch(setQuery(capitalizeFirstLetter(queryParam.get("query"))));
+        dispatch(getNewQueryImages(queryParam.get("query")));
+    }, [location]);
 
     function onChange(isVisible) {
         if(isVisible)

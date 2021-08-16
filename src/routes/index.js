@@ -12,6 +12,8 @@ import { useFetch } from '../utils';
 import { setTopicsData } from '../actions';
 import { getTopicsData } from '../actions/topicsDataSetter';
 import SearchResult from '../components/SearchResult';
+import { getToken } from '../actions';
+import Dashboard from '../components/dashboard/Dashboard';
 
 const api = createApi({
     // Don't forget to set your access token here!
@@ -25,6 +27,8 @@ const Routes = props => {
     const [mounted, setMounted] = useState(false)
 
     const dispatch = useDispatch();
+
+    const myState = useSelector((state) => state.authReducer);
 
     const FetchTopicData = async () => {
         const data = await useFetch(`https://api.unsplash.com/topics/?client_id=${ACCESS_ID}`);
@@ -45,6 +49,15 @@ const Routes = props => {
         setMounted(true);
     }, []);
 
+    useEffect(async () => {
+        const code = new URLSearchParams(window.location.search).get("code");
+        console.log("code inside:" + code);
+        if (code) {
+          dispatch(getToken(code));
+          window.history.pushState("", "", "/");
+        }
+      }, []);
+
     const topicsDataSetter = useSelector(state => state.topicsDataSetter);
     const { topicsData } = topicsDataSetter;
 
@@ -53,8 +66,9 @@ const Routes = props => {
     return (
         <Router>
             <Switch>
+                {/* {myState.accessToken==null ? <PublicRoute exact path="/" render={() => <HomePage name="Shehryar" />} isScrollaleTabs = {true}/> : <PublicRoute exact path="/" render={() => <Dashboard />} isScrollaleTabs = {false}/>} */}
                 <PublicRoute exact path="/" render={() => <HomePage name="Shehryar" />} isScrollaleTabs = {true}/>
-                <PublicRoute exact path="/search-result/:searchQuery" render={() => <SearchResult />} isScrollaleTabs = {false}/>
+                <PublicRoute exact path="/search" render={() => <SearchResult />} isScrollaleTabs = {false}/>
                 {
                     topicsData.map((topic, index) => {
                         return <PublicRoute exact path={`/${topic.slug}`} render={() => <CategoryPage topic = {topic} topicIndex = {index} />} isScrollaleTabs = {true}/>

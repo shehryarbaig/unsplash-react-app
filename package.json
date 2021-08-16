@@ -22,7 +22,7 @@
     "redux": "^4.1.0",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.1.3",
-    "unsplash-js": "^7.0.13",
+    "unsplash-js": "^7.0.15",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
