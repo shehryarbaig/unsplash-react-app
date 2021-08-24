@@ -4,6 +4,7 @@ import topicsDataSetter from "./topicsDataSetter";
 import topicsImagesSetter from "./topicImagesSetter";
 import queryImagesData from "./queryImagesData";
 import authReducer from "./authReducer";
+import photoLikes from "./photoLikes";
 
 const reducers = combineReducers({
     //changeTheNumber
@@ -11,7 +12,8 @@ const reducers = combineReducers({
     topicsDataSetter,
     topicsImagesSetter,
     queryImagesData,
-    authReducer
+    authReducer,
+    photoLikes
 });
 
 export default reducers;

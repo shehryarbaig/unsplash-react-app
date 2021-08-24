@@ -5,10 +5,10 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
-import {useNavBarStyles} from "./NavBar.style"
+import { useNavBarStyles } from "./NavBar.style"
 import { useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
-import { useDispatch , useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getNewQueryImages, setQuery, setToken } from '../../actions';
 import axios from 'axios';
 import { loginUrl } from '../../app/unsplash';
@@ -19,14 +19,15 @@ import { getToken } from '../../actions';
 
 const NavBar = () => {
   const classes = useNavBarStyles();
-  const [searchQuery,setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const history = useHistory();
   const dispatch = useDispatch();
   const myState = useSelector((state) => state.authReducer);
+  const [redirect, setRedirect] = useState(false);
 
   const handleOnClick = (query) => {
-      console.log(query);
-      history.push(`/search/?query=${query}`
+    console.log(query);
+    history.push(`/search/?query=${query}`
     );
   }
   // const handleButtonOnClick = async() => {
@@ -42,23 +43,19 @@ const NavBar = () => {
   // //document.open()
   // }
 
-  const handleLoginButtonOnClick = () => {
-    if(myState.accessToken==null)
-    {
-      console.log("insdie login" + loginUrl);
-      <Redirect to={loginUrl} />
-    }
-    else{
-      console.log("insdie else login");
-      dispatch(setToken(null));
-    }
+  const handleLogOut = () => {
+      dispatch(setToken({
+        access_token:null,
+        token_type:null,
+        scope: null
+      }));
   }
 
-  
-  
+
+
   //console.log("code outside:" + code);
-  console.log("access token: "+myState.accessToken);
-  console.log("login url : "+loginUrl);
+  console.log("access token: " + myState.accessToken);
+  console.log("login url : " + loginUrl);
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBarContainer}>
@@ -67,29 +64,32 @@ const NavBar = () => {
             UnSplash
           </Typography>
           <div className={classes.searchContainer}>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyPress={(e) => e.key === "Enter" ? handleOnClick(searchQuery) : null}
+
+              />
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onKeyPress = {(e)=> e.key === "Enter" ? handleOnClick(searchQuery): null}
-              
-            />
-          </div>
           </div>
           {/* <Button className={classes.loginButton} onClick={handleButtonOnClick} >Login</Button> */}
-          <Button className={classes.loginButton}  href={loginUrl} >{ myState.accessToken==null ? "Login" : "Logged In"}</Button>
+          {myState.accessToken == null ?
+            <Button className={classes.loginButton} href={loginUrl}  >Login</Button> :
+            <Button className={classes.loginButton} onClick={handleLogOut} >Log Out</Button>}
         </Toolbar>
       </AppBar>
+      {redirect && <Redirect to={"../www.google.com"} />}
     </div>
   );
 };
 
-export default  NavBar;
+export default NavBar;

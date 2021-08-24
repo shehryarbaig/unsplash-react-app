@@ -21,3 +21,24 @@ export function requestGetQueryImages(query, pageNumber) {
         url: `https://api.unsplash.com/search/photos?page=${pageNumber}&query=${query}&client_id=${ACCESS_ID}`
     });
 }
+
+export function requestGetMyProfile(accessToken, tokenType) {
+    return axios.request({
+        method: 'get',
+        headers: {
+          Authorization: `${tokenType} ${accessToken}`
+        },
+        url: `https://api.unsplash.com/me`
+      })
+}
+
+
+export function requestGetLikedPhotos(url,accessToken, tokenType, pageNumber) {
+    return axios.request({
+        method: 'get',
+        headers: {
+            Authorization: `${tokenType} ${accessToken}`
+        },
+        url: `${url}?page=${pageNumber}`
+      })
+}

@@ -8,3 +8,4 @@ export {setNewQueryImages} from "./queryImagesData";
 export {getQueryImages} from "./queryImagesData";
 export {getNewQueryImages} from "./queryImagesData";
 export { getToken, setToken } from "./authActions";
+export {setLikedPhotosId, getLikedPhotosId} from "./photoLikes";

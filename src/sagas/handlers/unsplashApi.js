@@ -1,7 +1,7 @@
 import { call, put } from "@redux-saga/core/effects";
-import { setQueryImages, setTopicsData, setNewQueryImages } from "../../actions";
+import { setQueryImages, setTopicsData, setNewQueryImages, setLikedPhotosId } from "../../actions";
 import { setTopicImages, setNewTopicImages } from "../../actions/topicsImagesSetter";
-import { requestGetTopicImages, requestGetTopics, requestGetQueryImages } from "../requests/unsplashApi";
+import { requestGetTopicImages, requestGetTopics, requestGetQueryImages, requestGetMyProfile, requestGetLikedPhotos } from "../requests/unsplashApi";
 
 
 export function* handleGetTopics(action){
@@ -86,3 +86,22 @@ export function* handleGetNewTopicImages(action){
         console.log(error);
     }
 }
+
+export function* handleGetLikedPhotosId(action){
+    try
+    {
+        console.log("inside likedPhoto handler");
+        const response = yield call(requestGetMyProfile, action.accessToken, action.tokenType);
+        const {data} = response;
+        for (let i = 0; i < Math.ceil(data.total_likes/10); i++) {
+
+            const likedPhotosResponse = yield call(requestGetLikedPhotos,data.links.likes, action.accessToken, action.tokenType, i+1)
+            yield put(setLikedPhotosId(likedPhotosResponse.data));
+          }
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+}
+

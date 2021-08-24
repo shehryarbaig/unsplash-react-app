@@ -1,6 +1,6 @@
 import { takeLatest, takeEvery, all } from "@redux-saga/core/effects";
-import { GET_TOPICS_DATA, GET_NEW_TOPIC_IMAGES, GET_TOPIC_IMAGES, GET_QUERY_IMAGES, GET_NEW_QUERY_IMAGES, GET_TOKEN } from "../type";
-import { handleGetTopicImages, handleGetNewTopicImages, handleGetTopics, handleGetNewQueryImages, handleGetQueryImages } from "./handlers/unsplashApi";
+import { GET_TOPICS_DATA, GET_NEW_TOPIC_IMAGES, GET_TOPIC_IMAGES, GET_QUERY_IMAGES, GET_NEW_QUERY_IMAGES, GET_TOKEN , GET_LIKED_PHOTOS_ID} from "../type";
+import { handleGetTopicImages, handleGetNewTopicImages, handleGetTopics, handleGetNewQueryImages, handleGetQueryImages, handleGetLikedPhotosId } from "./handlers/unsplashApi";
 import { handleGetToken } from "./handlers/auth";
 function* fetchTopicsData(){
     console.log("inside watcher");
@@ -24,6 +24,7 @@ export default function* rootSaga() {
         yield takeLatest(GET_NEW_TOPIC_IMAGES, handleGetNewTopicImages),
         yield takeLatest(GET_QUERY_IMAGES, handleGetQueryImages),
         yield takeLatest(GET_NEW_QUERY_IMAGES, handleGetNewQueryImages),
-        yield takeLatest(GET_TOKEN, handleGetToken)
+        yield takeLatest(GET_TOKEN, handleGetToken),
+        yield takeLatest(GET_LIKED_PHOTOS_ID, handleGetLikedPhotosId)
     ]);
 }
