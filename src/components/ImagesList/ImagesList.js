@@ -11,6 +11,7 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import ThumbUpAltRoundedIcon from '@material-ui/icons/ThumbUpAltRounded';
 import { useSelector, useDispatch } from 'react-redux';
 import { getLikedPhotosId } from '../../actions';
+import { connect } from 'react-redux';
 
 
 const ImagesList = props => {
@@ -43,61 +44,23 @@ const ImagesList = props => {
       })
   }
 
-  const getLikedPhotos=async(url, pages)=>{
-
-  for (let i = 0; i < pages; i++) {
-    console.log("Inside for loop")
-    console.log("Total Pages: ",pages)
-    const resp=await axios.request({
-       method: 'get',
-       headers: {
-         Authorization: `${myState.token_type} ${myState.accessToken}`
-       },
-       url: `${url}?page=${i+1}`
-     })
-     setLikedPhotos(photoIds => [...photoIds, ...(resp.data.filter(photo => !photoIds.includes(photo.id))).map(photo=>photo.id)])
-     //console.log(resp.data);
-     console.log("URL:" + url);
-
-    
-  }
-
-
-  }
-
   useEffect(async () => {
     if (myState.accessToken != null) {
-      //  await axios.request({
-      //   method: 'get',
-      //   headers: {
-      //     Authorization: `${myState.token_type} ${myState.accessToken}`
-      //   },
-      //   url: `https://api.unsplash.com/me`
-      // }).then(response =>{
-
-      //   setLikesLink(response.data.links.likes)
-      //   setTotalLikes(response.data.total_likes)
-      //   getLikedPhotos(response.data.links.likes, Math.ceil(response.data.total_likes/10))
-          
-      // }
-      // )
       dispatch(getLikedPhotosId(myState.accessToken, myState.token_type))
-
-     
-
     }
   }, [])
 
   // images.map(item=> console.log(item));
 
-  const handleLikeButtonClick = (item) => {
-
+  const handleLikeButtonClick = (event, item) => {
+    console.log("event:");
+    console.log(event);
     if (myState.accessToken != null) {
 
       console.log(item);
       //const newIds = likedPhotos;
       axios.request({
-        method: 'post',
+        method: likedPhotosId.includes(item.id) ? 'delete' : 'post',
         headers: {
           Authorization: `${myState.token_type} ${myState.accessToken}`
         },
@@ -112,29 +75,34 @@ const ImagesList = props => {
     
     
   }
-  console.log(likedPhotosId);
-  return (
-    <Box sx={{ height: "100%", }}>
+  //console.log(likedPhotosId);
+
+  console.log("imagesSetter: ", images);
+  console.log("imagesSetter1: ", images ? Object.entries(images): "not present");
+  return ( 
+    images ? <Box sx={{ height: "100%", }}>
 
       <ImageList style={{ display: "inline-block", columnCount: 3, columnGap: 8 }} variant="masonry">
 
-        {images.map((item) => (
+        {
+          
+          Object.entries(images).map((item) => (
 
-          <ImageListItem style={{ height: "auto", width: "100%", }} key={item.img}>
+          <ImageListItem style={{ height: "auto", width: "100%", }} key={item[1].img} cols={3}>
 
             <img
-              srcSet={item.urls.small}
-              alt={item.user.name}
-              loading="lazy"
+              srcSet={item[1].urls[3]}
+              alt={item[1].user.name}
+              // loading="lazy"
 
             />
             <ImageListItemBar
               style={{ backgroundColor: "transparent" }}
               position="bottom"
-              title={item.description}
-              subtitle={<span>by: {item.user.name}</span>}
+              title={item[1].description}
+              subtitle={<span>by: {item[1].user.name}</span>}
               actionIcon={
-                <IconButton aria-label={`info about ${item.description}`} className={classes.icon} onClick={() => downloadImage(item.urls.small, item.user.username)}>
+                <IconButton aria-label={`info about ${item[1].description}`} className={classes.icon} onClick={() => downloadImage(item[1].urls[3], item[1].user.username)}>
                   <GetAppRoundedIcon />
                 </IconButton>
               }
@@ -144,8 +112,8 @@ const ImagesList = props => {
               position="top"
               actionPosition="right"
               actionIcon={
-                <IconButton aria-label={`like ${item.description}`} className={classes.icon} onClick={()=> handleLikeButtonClick(item)}>
-                  <ThumbUpAltRoundedIcon  style={likedPhotosId.includes(item.id) ? { color: "#F5B041" }: { color: "white" }} />
+                <IconButton aria-label={`like ${item[1].description}`} className={classes.icon} onClick={(e)=> handleLikeButtonClick(e,item[1])}>
+                  <ThumbUpAltRoundedIcon  style={  { color: likedPhotosId.includes(item[1].id)?"#F5B041":"white" }} />
                 </IconButton>
               }
             />
@@ -154,11 +122,17 @@ const ImagesList = props => {
 
       </ImageList>
     </Box>
+    : null
+    //<div>Images</div>
 
   );
 
 };
 
+const mapStateToProps = function (state) {
+  return {
+     images: state.topicsImagesSetter.topicImages
+  }
+} 
 
-
-export default ImagesList;
+export default connect(mapStateToProps)(ImagesList);

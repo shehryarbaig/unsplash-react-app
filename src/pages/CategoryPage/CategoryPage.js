@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { useCategoryPageStyle } from './CategoryPage.style';
 import { useSelector, useDispatch } from "react-redux";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
-import ImagesList from '../../components/ImagesList';
+//import ImagesList from '../../components/ImagesList';
 import { getTopicImages, getNewTopicImages } from '../../actions/topicsImagesSetter';
 import { CircularProgress } from '@material-ui/core';
 import { changeActiveTab } from '../../actions';
 import VisibilitySensor from "react-visibility-sensor";
+const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));
 
 const CategoryPage = props => {
     const { topic, topicIndex } = props;
@@ -17,7 +18,10 @@ const CategoryPage = props => {
 
 
     function fetchMoreImages() {
-        dispatch(getTopicImages(topic.slug, (topicImages.length / 10) + 1));
+
+        topicImages &&  dispatch(getTopicImages(topic.slug, (Object.keys(topicImages).length / 10) + 1)) ;
+        
+        //console.log(Object.keys(topicImages.images).length);
     }
 
     useEffect(() => {
@@ -35,6 +39,8 @@ const CategoryPage = props => {
         }
     }
 
+    console.log("Topic Images: ", topicImages);
+
     return (
         <div className={classes.root}>
             <Grid container>
@@ -49,7 +55,10 @@ const CategoryPage = props => {
                 </Grid>
 
                 <Grid className={classes.imagesGrid} item sm={12}  >
-                    <ImagesList images={topicImages} />
+                    <Suspense fallback={<div>Loading</div>}>
+                    <ImagesList />
+
+                    </Suspense>
                 </Grid>
                 <VisibilitySensor onChange={onChange}>
                     <Grid item className={classes.circularIcon} xs={12} >

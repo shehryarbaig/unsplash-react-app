@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {useHomePageStyle} from "./HomePage.style";
 import { useLocation } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { changeActiveTab } from '../../actions';
 
 const HomePage = props => {
     const {name} = props;
     const classes = useHomePageStyle();
     const location = useLocation();
+    const dispatch = useDispatch();
     console.log(location);
+
+    useEffect(()=>{
+        dispatch(changeActiveTab(0));
+    },[])
 
     return (
         <div>

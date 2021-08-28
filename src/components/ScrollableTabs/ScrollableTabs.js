@@ -26,7 +26,7 @@ const ScrollableTabs = (props) => {
   const dispatch = useDispatch();
 
   const handleChange = (event, activeTabNumber) => {
-    dispatch(changeActiveTab(activeTabNumber+1));
+    dispatch(changeActiveTab(activeTabNumber));
     handleTabChange(history, dispatch,topicsData, event.target.innerText);
   };
 

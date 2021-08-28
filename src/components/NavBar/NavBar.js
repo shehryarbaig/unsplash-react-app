@@ -49,7 +49,12 @@ const NavBar = () => {
         token_type:null,
         scope: null
       }));
+      setRedirect(true);
   }
+  const handleLogIn = () => {
+      setRedirect(false);
+  }
+
 
 
 
@@ -83,11 +88,11 @@ const NavBar = () => {
           </div>
           {/* <Button className={classes.loginButton} onClick={handleButtonOnClick} >Login</Button> */}
           {myState.accessToken == null ?
-            <Button className={classes.loginButton} href={loginUrl}  >Login</Button> :
+            <Button className={classes.loginButton} href={loginUrl} onClick={handleLogIn}  >Login</Button> :
             <Button className={classes.loginButton} onClick={handleLogOut} >Log Out</Button>}
         </Toolbar>
       </AppBar>
-      {redirect && <Redirect to={"../www.google.com"} />}
+      {redirect && <Redirect to={"/"} />}
     </div>
   );
 };
