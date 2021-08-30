@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { useSearchResultStyle } from './SearchResult.style';
 import { Grid } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
@@ -12,25 +12,24 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { setQuery, getNewQueryImages } from '../../actions';
 import { capitalizeFirstLetter } from '../../utils';
+import { imageSelector, queryImagesSelector, querySelector } from '../../selectors';
 
 const SearchResult = props => {
     const classes = useSearchResultStyle();
-    const queryImagesData = useSelector(state => state.queryImagesData);
-    const { queryImages, query } = queryImagesData;
     const dispatch = useDispatch();
     //const params = useParams();
     const location = useLocation();
     //console.log(params.searchQuery);
+    const {queryImages, query} = props;
 
     const useQuery = () => {
         return new URLSearchParams(location.search);
       }
 
     const queryParam = useQuery(); 
-    //console.log("q is " + queryParam.get("query"));
 
     function fetchMoreImages() {
-        dispatch(getQueryImages(query, (queryImages.length / 10) + 1));
+        dispatch(getQueryImages(query, (Object.keys(queryImages).length / 10) + 1));
     }
 
     useEffect(() => {
@@ -59,7 +58,7 @@ const SearchResult = props => {
                 </Grid>
 
                 <Grid className={classes.imagesGrid} item sm={12}  >
-                    <ImagesList images={queryImages} />
+                    <ImagesList imageType="Query" />
                 </Grid>
                 <VisibilitySensor onChange={onChange}>
                     <Grid item className={classes.circularIcon} xs={12} >
@@ -72,5 +71,11 @@ const SearchResult = props => {
     );
 };
 
-
-export default SearchResult;
+const mapStateToProps = function (state) {
+    return {
+       queryImages: queryImagesSelector(state),
+       query: querySelector(state)
+    }
+  } 
+  
+export default connect(mapStateToProps)(SearchResult);

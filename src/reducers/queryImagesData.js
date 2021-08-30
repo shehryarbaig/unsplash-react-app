@@ -2,7 +2,7 @@ import { SET_QUERY_IMAGES, SET_NEW_QUERY_IMAGES, SET_QUERY } from "../type";
 
 const initialState = {
     query: "",
-    queryImages: []
+    queryImages: {}
 }
 
 const queryImagesData = (state = initialState, action) => {
@@ -13,11 +13,11 @@ const queryImagesData = (state = initialState, action) => {
         }
         case SET_QUERY_IMAGES: return {
             ...state,
-            queryImages: [...state.queryImages,...action.queryImages]
+            queryImages: {...state.queryImages,...action.queryImages.images}
         }
         case SET_NEW_QUERY_IMAGES: return {
             ...state,
-            queryImages: action.queryImages
+            queryImages: action.queryImages.images
         }
         default: return state;
     }

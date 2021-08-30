@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect } from 'react';
 import { useCategoryPageStyle } from './CategoryPage.style';
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, connect } from "react-redux";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
@@ -9,10 +9,12 @@ import { getTopicImages, getNewTopicImages } from '../../actions/topicsImagesSet
 import { CircularProgress } from '@material-ui/core';
 import { changeActiveTab } from '../../actions';
 import VisibilitySensor from "react-visibility-sensor";
+import { imageSelector, topicImagesSelector } from '../../selectors';
 const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));
 
 const CategoryPage = props => {
     const { topic, topicIndex } = props;
+    const { topicImages } = props;
     const classes = useCategoryPageStyle();
     const dispatch = useDispatch();
 
@@ -28,9 +30,6 @@ const CategoryPage = props => {
         dispatch(changeActiveTab(topicIndex + 1));
         dispatch(getNewTopicImages(topic.slug));
     }, []);
-
-    const topicsImagesSetter = useSelector(state => state.topicsImagesSetter);
-    const { topicImages } = topicsImagesSetter;
 
     function onChange(isVisible) {
         if(isVisible)
@@ -56,7 +55,7 @@ const CategoryPage = props => {
 
                 <Grid className={classes.imagesGrid} item sm={12}  >
                     <Suspense fallback={<div>Loading</div>}>
-                    <ImagesList />
+                    <ImagesList imageType="Topic" />
 
                     </Suspense>
                 </Grid>
@@ -71,5 +70,10 @@ const CategoryPage = props => {
     );
 };
 
-
-export default CategoryPage;
+const mapStateToProps = function (state) {
+    return {
+       topicImages: topicImagesSelector(state)
+    }
+  } 
+  
+export default connect(mapStateToProps)(CategoryPage);

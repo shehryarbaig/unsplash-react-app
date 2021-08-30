@@ -45,10 +45,12 @@ export function* handleGetQueryImages(action){
         console.log("inside query images");
         const response = yield call(requestGetQueryImages, action.searchQuery, action.pageNumber);
         const {data} = response;
+        const normalizedData = normalize(data.results, [imagesSchema]);
         console.log("image count: " + action.pageNumber);
         console.log("data query images");
         console.log(data);
-        yield put(setQueryImages(data.results));
+        console.log("normalized images: ",normalizedData);
+        yield put(setQueryImages(normalizedData.entities));
     }
     catch(error)
     {
@@ -62,10 +64,12 @@ export function* handleGetNewQueryImages(action){
         console.log("inside query new images");
         const response = yield call(requestGetQueryImages, action.searchQuery, 1);
         const {data} = response;
+        const normalizedData = normalize(data.results, [imagesSchema]);
         //console.log("image count: " + action.pageNumber);
         console.log("data query new images");
         console.log(data);
-        yield put(setNewQueryImages(data.results));
+        console.log("normalized images: ",normalizedData);
+        yield put(setNewQueryImages(normalizedData.entities));
     }
     catch(error)
     {
@@ -96,6 +100,7 @@ export function* handleGetLikedPhotosId(action){
         console.log("inside likedPhoto handler");
         const response = yield call(requestGetMyProfile, action.accessToken, action.tokenType);
         const {data} = response;
+        console.log("my Profile", data) 
         for (let page = 0; page < Math.ceil(data.total_likes/10); page++) {
 
             const likedPhotosResponse = yield call(requestGetLikedPhotos,data.links.likes, action.accessToken, action.tokenType, page+1)

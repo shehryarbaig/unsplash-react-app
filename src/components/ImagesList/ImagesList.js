@@ -12,16 +12,13 @@ import ThumbUpAltRoundedIcon from '@material-ui/icons/ThumbUpAltRounded';
 import { useSelector, useDispatch } from 'react-redux';
 import { getLikedPhotosId } from '../../actions';
 import { connect } from 'react-redux';
+import { imageSelector } from '../../selectors';
 
 
 const ImagesList = props => {
   const classes = useImageListStyle();
   const { images } = props;
   const myState = useSelector((state) => state.authReducer);
-  const [likedPhotos, setLikedPhotos] = useState([]);
-  const [likesLink, setLikesLink] = useState("");
-  const [totalLikes, setTotalLikes] = useState(0);
-  const likedPhotosIds = []
   const dispatch = useDispatch();
 
   const photoLikes = useSelector(state => state.photoLikes);
@@ -50,15 +47,12 @@ const ImagesList = props => {
     }
   }, [])
 
-  // images.map(item=> console.log(item));
-
   const handleLikeButtonClick = (event, item) => {
     console.log("event:");
     console.log(event);
     if (myState.accessToken != null) {
 
       console.log(item);
-      //const newIds = likedPhotos;
       axios.request({
         method: likedPhotosId.includes(item.id) ? 'delete' : 'post',
         headers: {
@@ -66,9 +60,6 @@ const ImagesList = props => {
         },
         url: `https://api.unsplash.com/photos/${item.id}/like`
       }).then(response=> {
-        // const likes = totalLikes+1
-        // setTotalLikes(likes);
-        // getLikedPhotos(likesLink,Math.ceil(likes/10))
         dispatch(getLikedPhotosId(myState.accessToken, myState.token_type))
       });
     }
@@ -80,7 +71,7 @@ const ImagesList = props => {
   console.log("imagesSetter: ", images);
   console.log("imagesSetter1: ", images ? Object.entries(images): "not present");
   return ( 
-    images ? <Box sx={{ height: "100%", }}>
+    images && <Box sx={{ height: "100%", }}>
 
       <ImageList style={{ display: "inline-block", columnCount: 3, columnGap: 8 }} variant="masonry">
 
@@ -122,16 +113,17 @@ const ImagesList = props => {
 
       </ImageList>
     </Box>
-    : null
+   
     //<div>Images</div>
 
   );
 
 };
 
-const mapStateToProps = function (state) {
+const mapStateToProps = function (state, ownProps) {
+  const {imageType} = ownProps;
   return {
-     images: state.topicsImagesSetter.topicImages
+     images: imageSelector(state, imageType)
   }
 } 
 
