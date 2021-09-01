@@ -9,7 +9,6 @@ const HomePage = props => {
     const classes = useHomePageStyle();
     const location = useLocation();
     const dispatch = useDispatch();
-    console.log(location);
 
     useEffect(()=>{
         dispatch(changeActiveTab(0));

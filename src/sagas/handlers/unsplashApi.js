@@ -1,18 +1,17 @@
 import { call, put } from "@redux-saga/core/effects";
 import { setQueryImages, setTopicsData, setNewQueryImages, setLikedPhotosId } from "../../actions";
 import { setTopicImages, setNewTopicImages } from "../../actions/topicsImagesSetter";
-import { requestGetTopicImages, requestGetTopics, requestGetQueryImages, requestGetMyProfile, requestGetLikedPhotos } from "../requests/unsplashApi";
+import { requestGetTopicImages, requestGetTopics, requestGetQueryImages, requestGetUserProfile, requestGetLikedPhotos } from "../requests/unsplashApi";
 import { imagesSchema } from "../../imagesSchema";
 import { normalize } from "normalizr";
+import { setUserProfile } from "../../actions/profile";
+import { setLikedImages, setNewLikedImages } from "../../actions/photoLikes";
 
 export function* handleGetTopics(action){
     try
     {
-        console.log("inside handler");
         const response = yield call(requestGetTopics);
         const {data} = response;
-        console.log("data");
-        console.log(data);
         yield put(setTopicsData(data))
     }
     catch(error)
@@ -24,13 +23,9 @@ export function* handleGetTopics(action){
 export function* handleGetTopicImages(action){
     try
     {
-        console.log("inside images");
         const response = yield call(requestGetTopicImages, action.topic, action.pageNumber);
         const {data} = response;
         const normalizedData = normalize(data, [imagesSchema]);
-        console.log("image count: " + action.pageNumber);
-        console.log("data images: ", data);
-        console.log("normalized images: ",normalizedData);
         yield put(setTopicImages(normalizedData.entities));
     }
     catch(error)
@@ -42,14 +37,9 @@ export function* handleGetTopicImages(action){
 export function* handleGetQueryImages(action){
     try
     {
-        console.log("inside query images");
         const response = yield call(requestGetQueryImages, action.searchQuery, action.pageNumber);
         const {data} = response;
         const normalizedData = normalize(data.results, [imagesSchema]);
-        console.log("image count: " + action.pageNumber);
-        console.log("data query images");
-        console.log(data);
-        console.log("normalized images: ",normalizedData);
         yield put(setQueryImages(normalizedData.entities));
     }
     catch(error)
@@ -61,14 +51,9 @@ export function* handleGetQueryImages(action){
 export function* handleGetNewQueryImages(action){
     try
     {
-        console.log("inside query new images");
         const response = yield call(requestGetQueryImages, action.searchQuery, 1);
         const {data} = response;
         const normalizedData = normalize(data.results, [imagesSchema]);
-        //console.log("image count: " + action.pageNumber);
-        console.log("data query new images");
-        console.log(data);
-        console.log("normalized images: ",normalizedData);
         yield put(setNewQueryImages(normalizedData.entities));
     }
     catch(error)
@@ -80,12 +65,9 @@ export function* handleGetNewQueryImages(action){
 export function* handleGetNewTopicImages(action){
     try
     {
-        console.log("inside images");
         const response = yield call(requestGetTopicImages, action.topic,1);
         const {data} = response;
         const normalizedData = normalize(data, [imagesSchema]);
-        console.log("data images");
-        console.log(normalizedData);
         yield put(setNewTopicImages(normalizedData.entities));
     }
     catch(error)
@@ -97,15 +79,54 @@ export function* handleGetNewTopicImages(action){
 export function* handleGetLikedPhotosId(action){
     try
     {
-        console.log("inside likedPhoto handler");
-        const response = yield call(requestGetMyProfile, action.accessToken, action.tokenType);
-        const {data} = response;
-        console.log("my Profile", data) 
-        for (let page = 0; page < Math.ceil(data.total_likes/10); page++) {
+        for (let page = 0; page < Math.ceil(action.totalLikes/10); page++) {
 
-            const likedPhotosResponse = yield call(requestGetLikedPhotos,data.links.likes, action.accessToken, action.tokenType, page+1)
+            const likedPhotosResponse = yield call(requestGetLikedPhotos,action.likesUrl, action.accessToken, action.tokenType, page+1)
+            console.log("liked photo data", likedPhotosResponse.data)
             yield put(setLikedPhotosId(likedPhotosResponse.data,page+1));
           }
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+}
+export function* handleGetUserProfile(action){
+    try
+    {
+        const response = yield call(requestGetUserProfile, action.accessToken, action.tokenType);
+        const {data} = response;
+        console.log("handleGetUserProfile: ", data);
+        yield put(setUserProfile(data));
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+}
+
+export function* handleGetLikedImages(action){
+    try
+    {
+        const response = yield call(requestGetLikedPhotos,action.likesUrl, action.accessToken, action.tokenType, action.pageNumber)
+        const {data} = response;
+        const normalizedData = normalize(data, [imagesSchema]);
+        yield put(setLikedImages(normalizedData.entities));
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+}
+
+export function* handleGetNewLikedImages(action){
+    try
+    {
+        const response = yield call(requestGetLikedPhotos,action.likesUrl, action.accessToken, action.tokenType, 1)
+        const {data} = response;
+        const normalizedData = normalize(data, [imagesSchema]);
+        console.log("Normalized Liked Images", normalizedData.entities);
+        yield put(setNewLikedImages(normalizedData.entities));
     }
     catch(error)
     {

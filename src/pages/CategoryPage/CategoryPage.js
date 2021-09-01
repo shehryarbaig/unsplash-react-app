@@ -22,8 +22,6 @@ const CategoryPage = props => {
     function fetchMoreImages() {
 
         topicImages &&  dispatch(getTopicImages(topic.slug, (Object.keys(topicImages).length / 10) + 1)) ;
-        
-        //console.log(Object.keys(topicImages.images).length);
     }
 
     useEffect(() => {
@@ -37,8 +35,6 @@ const CategoryPage = props => {
             fetchMoreImages();
         }
     }
-
-    console.log("Topic Images: ", topicImages);
 
     return (
         <div className={classes.root}>

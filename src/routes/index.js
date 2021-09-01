@@ -9,11 +9,15 @@ import { createApi } from "unsplash-js";
 import { ACCESS_ID } from '../config';
 import { useState, useEffect } from 'react';
 import { useFetch } from '../utils';
-import { setTopicsData } from '../actions';
+import { setToken, setTopicsData } from '../actions';
 import { getTopicsData } from '../actions/topicsDataSetter';
 import SearchResult from '../components/SearchResult';
 import { getToken } from '../actions';
 import Dashboard from '../components/dashboard/Dashboard';
+import PrivateRoute from './PrivateRoute';
+import ProfilePage from '../components/ProfilePage';
+import { getUserProfile } from '../actions/profile';
+
 
 const api = createApi({
     // Don't forget to set your access token here!
@@ -29,6 +33,9 @@ const Routes = props => {
     const dispatch = useDispatch();
 
     const myState = useSelector((state) => state.authReducer);
+
+    const profile = useSelector(state=> state.profile);
+    const {userProfile} = profile;
 
     const FetchTopicData = async () => {
         const data = await useFetch(`https://api.unsplash.com/topics/?client_id=${ACCESS_ID}`);
@@ -51,18 +58,42 @@ const Routes = props => {
 
     useEffect(async () => {
         const code = new URLSearchParams(window.location.search).get("code");
-        console.log("code inside:" + code);
         if (code) {
           dispatch(getToken(code));
+          
           window.history.pushState("", "", "/");
         }
       }, []);
 
+    useEffect(()=>{
+        if(myState.accessToken)
+        {
+            dispatch(getUserProfile(myState.accessToken, myState.token_type));
+        }
+    },[myState.accessToken])
+
+    useEffect(async ()=>{
+        console.log("Inside Access Token useEffect")
+        const tokenState = {
+            access_token: myState.accessToken,
+            token_type: myState.token_type,
+            scope: myState.scope
+        }
+        myState.accessToken && localStorage.setItem("tokenConfig", JSON.stringify(tokenState));
+        const token = JSON.parse(localStorage.getItem("tokenConfig"));
+        console.log(token);
+        if(token && !myState.accessToken)
+        {
+            console.log("Access Tokem: ", token.access_token)
+            dispatch(getUserProfile(token.access_token, token.token_type));
+            dispatch(setToken(token));
+
+        }
+    },[myState.accessToken])
+
     const topicsDataSetter = useSelector(state => state.topicsDataSetter);
     const { topicsData } = topicsDataSetter;
 
-    //console.log("topicsData");
-    //console.log(topicsData);
     return (
         <Router>
             <Switch>
@@ -75,6 +106,7 @@ const Routes = props => {
 
                     })
                 }
+                {userProfile && <PrivateRoute exact path="/profile" render={()=> <ProfilePage/>} isScrollaleTabs = {false}/>}
             </Switch>
         </Router>
     );

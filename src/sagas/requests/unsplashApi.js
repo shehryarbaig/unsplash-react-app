@@ -22,7 +22,7 @@ export function requestGetQueryImages(query, pageNumber) {
     });
 }
 
-export function requestGetMyProfile(accessToken, tokenType) {
+export function requestGetUserProfile(accessToken, tokenType) {
     return axios.request({
         method: 'get',
         headers: {

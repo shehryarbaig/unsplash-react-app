@@ -5,6 +5,7 @@ import topicsImagesSetter from "./topicImagesSetter";
 import queryImagesData from "./queryImagesData";
 import authReducer from "./authReducer";
 import photoLikes from "./photoLikes";
+import profile from "./profile"
 
 const reducers = combineReducers({
     //changeTheNumber
@@ -13,7 +14,8 @@ const reducers = combineReducers({
     topicsImagesSetter,
     queryImagesData,
     authReducer,
-    photoLikes
+    photoLikes,
+    profile
 });
 
 export default reducers;

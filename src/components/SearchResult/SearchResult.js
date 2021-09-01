@@ -19,7 +19,6 @@ const SearchResult = props => {
     const dispatch = useDispatch();
     //const params = useParams();
     const location = useLocation();
-    //console.log(params.searchQuery);
     const {queryImages, query} = props;
 
     const useQuery = () => {
@@ -33,7 +32,6 @@ const SearchResult = props => {
     }
 
     useEffect(() => {
-        console.log("query:" + queryParam.get("query"))
         dispatch(setQuery(capitalizeFirstLetter(queryParam.get("query"))));
         dispatch(getNewQueryImages(queryParam.get("query")));
     }, [location]);

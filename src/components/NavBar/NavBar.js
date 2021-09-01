@@ -9,11 +9,14 @@ import { useNavBarStyles } from "./NavBar.style"
 import { useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getNewQueryImages, setQuery, setToken } from '../../actions';
+import { getNewQueryImages, setLikedPhotosId, setQuery, setToken } from '../../actions';
 import axios from 'axios';
 import { loginUrl } from '../../app/unsplash';
 import { useEffect } from 'react';
 import { getToken } from '../../actions';
+import { setUserProfile } from '../../actions/profile';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { IconButton } from '@material-ui/core';
 
 
 
@@ -26,7 +29,6 @@ const NavBar = () => {
   const [redirect, setRedirect] = useState(false);
 
   const handleOnClick = (query) => {
-    console.log(query);
     history.push(`/search/?query=${query}`
     );
   }
@@ -49,18 +51,20 @@ const NavBar = () => {
         token_type:null,
         scope: null
       }));
+      localStorage.removeItem("tokenConfig");
+      dispatch(setLikedPhotosId([],1));
+      //dispatch(setUserProfile(null));
       setRedirect(true);
   }
   const handleLogIn = () => {
       setRedirect(false);
   }
 
+  const handleOnProfileClick = () => {
+    console.log("handleOnProfileClick")
+    history.push('/profile');
+  }
 
-
-
-  //console.log("code outside:" + code);
-  console.log("access token: " + myState.accessToken);
-  console.log("login url : " + loginUrl);
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBarContainer}>
@@ -87,6 +91,10 @@ const NavBar = () => {
             </div>
           </div>
           {/* <Button className={classes.loginButton} onClick={handleButtonOnClick} >Login</Button> */}
+          {myState.accessToken!=null && 
+          <IconButton onClick={handleOnProfileClick}>
+            <AccountCircleIcon/>
+          </IconButton>}
           {myState.accessToken == null ?
             <Button className={classes.loginButton} href={loginUrl} onClick={handleLogIn}  >Login</Button> :
             <Button className={classes.loginButton} onClick={handleLogOut} >Log Out</Button>}

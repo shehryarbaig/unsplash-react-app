@@ -12,17 +12,20 @@ import ThumbUpAltRoundedIcon from '@material-ui/icons/ThumbUpAltRounded';
 import { useSelector, useDispatch } from 'react-redux';
 import { getLikedPhotosId } from '../../actions';
 import { connect } from 'react-redux';
-import { imageSelector } from '../../selectors';
+import { imageSelector, userLikesUrlSelector, userTotalLikesSelector } from '../../selectors';
 
 
 const ImagesList = props => {
   const classes = useImageListStyle();
-  const { images } = props;
+  const { images, likesUrl, totalLikes } = props;
   const myState = useSelector((state) => state.authReducer);
   const dispatch = useDispatch();
 
   const photoLikes = useSelector(state => state.photoLikes);
     const { likedPhotosId } = photoLikes;
+
+    const profile = useSelector(state=> state.profile);
+    const {userProfile} = profile;
 
   const downloadImage = (url, fileName) => {
     axios({
@@ -41,18 +44,16 @@ const ImagesList = props => {
       })
   }
 
+
   useEffect(async () => {
     if (myState.accessToken != null) {
-      dispatch(getLikedPhotosId(myState.accessToken, myState.token_type))
+      console.log("Likes Url ", likesUrl)
+      Object.keys(userProfile).length!==0 && dispatch(getLikedPhotosId(userProfile.links.likes,userProfile.total_likes,myState.accessToken, myState.token_type))
     }
   }, [])
 
   const handleLikeButtonClick = (event, item) => {
-    console.log("event:");
-    console.log(event);
     if (myState.accessToken != null) {
-
-      console.log(item);
       axios.request({
         method: likedPhotosId.includes(item.id) ? 'delete' : 'post',
         headers: {
@@ -60,16 +61,14 @@ const ImagesList = props => {
         },
         url: `https://api.unsplash.com/photos/${item.id}/like`
       }).then(response=> {
-        dispatch(getLikedPhotosId(myState.accessToken, myState.token_type))
+        Object.keys(userProfile).length!==0 && dispatch(getLikedPhotosId(userProfile.links.likes,userProfile.total_likes,myState.accessToken, myState.token_type))
       });
     }
     
     
   }
-  //console.log(likedPhotosId);
 
-  console.log("imagesSetter: ", images);
-  console.log("imagesSetter1: ", images ? Object.entries(images): "not present");
+  console.log("Images: ", images)
   return ( 
     images && <Box sx={{ height: "100%", }}>
 

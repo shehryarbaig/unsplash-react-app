@@ -12,7 +12,6 @@ export const handleTabChange = (history, dispatch, topicsData, activeTabText) =>
         topicsData.map(topic => {
             if(topic.title===activeTabText)
             {
-                //console.log(activeTabText + "1");
                 //dispatch(changeActiveTabUrl(topic.links.self));
                 history.push(`/${topic.slug}`);
                 dispatch(setTopic(topic));
