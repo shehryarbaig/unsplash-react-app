@@ -1,15 +1,13 @@
 import React, { Suspense, useEffect } from 'react';
 import { useCategoryPageStyle } from './CategoryPage.style';
-import { useSelector, useDispatch, connect } from "react-redux";
-import Paper from '@material-ui/core/Paper';
+import {useDispatch, connect } from "react-redux";
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
-//import ImagesList from '../../components/ImagesList';
 import { getTopicImages, getNewTopicImages } from '../../actions/topicsImagesSetter';
 import { CircularProgress } from '@material-ui/core';
 import { changeActiveTab } from '../../actions';
 import VisibilitySensor from "react-visibility-sensor";
-import { imageSelector, topicImagesSelector } from '../../selectors';
+import { topicImagesSelector } from '../../selectors';
 const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));
 
 const CategoryPage = props => {

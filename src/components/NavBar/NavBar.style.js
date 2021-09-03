@@ -18,7 +18,6 @@ export const useNavBarStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   title: {
-    //flexGrow: 1,
     color: "#808080",
   },
   loginButton: {

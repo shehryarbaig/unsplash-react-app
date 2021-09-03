@@ -8,9 +8,6 @@ export const useScrollableTabsStyle = makeStyles((theme) => ({
     },
     tab:{
       textTransform:"none",
-      // "& .MuiTab-textColorPrimary.Mui-selected":{
-      //   color: theme.palette.primary.main
-      // }
       fontSize:"14px",
       fontWeight:600
     },

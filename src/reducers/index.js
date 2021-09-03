@@ -8,7 +8,6 @@ import photoLikes from "./photoLikes";
 import profile from "./profile"
 
 const reducers = combineReducers({
-    //changeTheNumber
     tabHandler,
     topicsDataSetter,
     topicsImagesSetter,

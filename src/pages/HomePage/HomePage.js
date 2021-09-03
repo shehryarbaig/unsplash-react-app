@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react';
 import { useHomePageStyle } from "./HomePage.style";
-import { useLocation } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { changeActiveTab } from '../../actions';
 import { Typography } from '@material-ui/core';
 import SearchBar from '../../components/SearchBar';
 
 const HomePage = props => {
-    const { name } = props;
     const classes = useHomePageStyle();
-    const location = useLocation();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -18,14 +15,6 @@ const HomePage = props => {
 
     return (
         <div className={classes.container} >
-            {/* <img
-                //srcSet="https://images.unsplash.com/photo-1630011725376-bd68a6403318?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNDY1Njh8MHwxfHRvcGljfHxibzhqUUtUYUUwWXx8fHx8Mnx8MTYzMDQ5NzEzNw&ixlib=rb-1.2.1&q=80&w=1080"
-                srcSet="https://images.unsplash.com/photo-1629831676333-8e33b2d7cdd9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNDY1Njh8MHwxfGFsbHx8fHx8fHx8fDE2MzA1NzUyNTM&ixlib=rb-1.2.1&q=80&w=1080"
-                //srcSet="https://images.unsplash.com/photo-1630011725376-bd68a6403318?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyNDY1Njh8MHwxfHRvcGljfHxibzhqUUtUYUUwWXx8fHx8Mnx8MTYzMDQ5NzEzNw&ixlib=rb-1.2.1&q=85"
-                loading="lazy"
-                width="100%"
-                height="700px"
-            /> */}
             <picture>
                 <source srcset="https://images.unsplash.com/photo-1629831676333-8e33b2d7cdd9?ixid=MnwxMjA3fDB8MHxwaG90by1vZi10aGUtZGF5fHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;dpr=1&amp;auto=format%2Ccompress&amp;fit=crop&amp;w=4799&amp;h=594 1x, https://images.unsplash.com/photo-1629831676333-8e33b2d7cdd9?ixid=MnwxMjA3fDB8MHxwaG90by1vZi10aGUtZGF5fHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;dpr=2&amp;auto=format%2Ccompress&amp;fit=crop&amp;w=4799&amp;h=594 2x" media="(min-width: 4600px)" />
                 <source srcset="https://images.unsplash.com/photo-1629831676333-8e33b2d7cdd9?ixid=MnwxMjA3fDB8MHxwaG90by1vZi10aGUtZGF5fHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;dpr=1&amp;auto=format%2Ccompress&amp;fit=crop&amp;w=4599&amp;h=594 1x, https://images.unsplash.com/photo-1629831676333-8e33b2d7cdd9?ixid=MnwxMjA3fDB8MHxwaG90by1vZi10aGUtZGF5fHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;dpr=2&amp;auto=format%2Ccompress&amp;fit=crop&amp;w=4599&amp;h=594 2x" media="(min-width: 4400px)" />

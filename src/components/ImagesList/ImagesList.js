@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useImageListStyle } from './ImagesList.style';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
@@ -7,17 +7,16 @@ import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import GetAppRoundedIcon from '@material-ui/icons/GetAppRounded';
 import axios from "axios";
-import StarBorderIcon from '@material-ui/icons/StarBorder';
 import ThumbUpAltRoundedIcon from '@material-ui/icons/ThumbUpAltRounded';
 import { useSelector, useDispatch } from 'react-redux';
 import { getLikedPhotosId } from '../../actions';
 import { connect } from 'react-redux';
-import { imageSelector, userLikesUrlSelector, userTotalLikesSelector } from '../../selectors';
+import { imageSelector } from '../../selectors';
 
 
 const ImagesList = props => {
   const classes = useImageListStyle();
-  const { images, likesUrl, totalLikes } = props;
+  const { images } = props;
   const myState = useSelector((state) => state.authReducer);
   const dispatch = useDispatch();
 
@@ -45,9 +44,8 @@ const ImagesList = props => {
   }
 
 
-  useEffect(async () => {
+  useEffect(() => {
     if (myState.accessToken != null) {
-      console.log("Likes Url ", likesUrl)
       Object.keys(userProfile).length!==0 && dispatch(getLikedPhotosId(userProfile.links.likes,userProfile.total_likes,myState.accessToken, myState.token_type))
     }
   }, [])
@@ -68,7 +66,6 @@ const ImagesList = props => {
     
   }
 
-  console.log("Images: ", images)
   return ( 
     images && <Box sx={{ height: "100%", }}>
 
@@ -83,7 +80,6 @@ const ImagesList = props => {
             <img
               srcSet={item[1].urls[3]}
               alt={item[1].user.name}
-              // loading="lazy"
 
             />
             <ImageListItemBar
@@ -112,8 +108,6 @@ const ImagesList = props => {
 
       </ImageList>
     </Box>
-   
-    //<div>Images</div>
 
   );
 

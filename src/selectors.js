@@ -1,5 +1,3 @@
-import { createSelector } from "reselect"
-
 export const topicImagesSelector = (state) => state.topicsImagesSetter.topicImages
 export const likedImagesSelector = (state) => state.photoLikes.likedImages
 export const queryImagesSelector = (state) => state.queryImagesData.queryImages

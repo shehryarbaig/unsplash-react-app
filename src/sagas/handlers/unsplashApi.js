@@ -82,7 +82,6 @@ export function* handleGetLikedPhotosId(action){
         for (let page = 0; page < Math.ceil(action.totalLikes/10); page++) {
 
             const likedPhotosResponse = yield call(requestGetLikedPhotos,action.likesUrl, action.accessToken, action.tokenType, page+1)
-            console.log("liked photo data", likedPhotosResponse.data)
             yield put(setLikedPhotosId(likedPhotosResponse.data,page+1));
           }
     }
@@ -96,7 +95,6 @@ export function* handleGetUserProfile(action){
     {
         const response = yield call(requestGetUserProfile, action.accessToken, action.tokenType);
         const {data} = response;
-        console.log("handleGetUserProfile: ", data);
         yield put(setUserProfile(data));
     }
     catch(error)
@@ -125,7 +123,6 @@ export function* handleGetNewLikedImages(action){
         const response = yield call(requestGetLikedPhotos,action.likesUrl, action.accessToken, action.tokenType, 1)
         const {data} = response;
         const normalizedData = normalize(data, [imagesSchema]);
-        console.log("Normalized Liked Images", normalizedData.entities);
         yield put(setNewLikedImages(normalizedData.entities));
     }
     catch(error)

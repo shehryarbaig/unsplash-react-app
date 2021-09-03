@@ -1,5 +1,4 @@
-import {Grid, makeStyles} from "@material-ui/core";
-import { Block } from "@material-ui/icons";
+import {makeStyles} from "@material-ui/core";
 
 export const useProfilePageStyle = makeStyles((theme) => ({
     root: {
@@ -7,11 +6,6 @@ export const useProfilePageStyle = makeStyles((theme) => ({
         paddingRight: 55,
         paddingLeft: 55,
     },
-    // categoryInfo: {
-    //     display: Block,
-    //     height: "324px",
-    //     width: "519.44px",
-    //}
     paper: {
         padding: theme.spacing(2),
         textAlign: 'center',

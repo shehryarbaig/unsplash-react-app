@@ -1,6 +1,4 @@
-import { changeActiveTabUrl } from "../actions";
 import { setTopic } from "../actions";
-import { getTopicImages , getNewTopicImages} from "../actions/topicsImagesSetter";
 
 export const handleTabChange = (history, dispatch, topicsData, activeTabText) => {
     if(activeTabText==="Home Page")
@@ -12,11 +10,10 @@ export const handleTabChange = (history, dispatch, topicsData, activeTabText) =>
         topicsData.map(topic => {
             if(topic.title===activeTabText)
             {
-                //dispatch(changeActiveTabUrl(topic.links.self));
                 history.push(`/${topic.slug}`);
                 dispatch(setTopic(topic));
-                //dispatch(getNewTopicImages(topic.slug));
             }
+            return true;
         })
     }
 

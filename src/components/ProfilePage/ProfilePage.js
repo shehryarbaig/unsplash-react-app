@@ -6,7 +6,7 @@ import { Typography } from '@material-ui/core';
 import { Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CircularProgress } from '@material-ui/core';
-import { likedImagesSelector, userLikesUrlSelector, userProfileSelector } from '../../selectors';
+import { likedImagesSelector, userProfileSelector } from '../../selectors';
 import { getLikedImages, getNewLikedImages } from '../../actions/photoLikes';
 import { connect } from 'react-redux';
 const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));
@@ -18,8 +18,6 @@ const ProfilePage = props => {
 
     const dispatch = useDispatch();
 
-
-    const profile = useSelector(state=> state.profile);
     const {userProfile} = props;
     
     const {likedImages} = props;
@@ -42,8 +40,6 @@ const ProfilePage = props => {
         }
     }
 
-    console.log("userProfile", userProfile)
-    console.log("Liked Images:", likedImages);
     return (
         <div className={classes.root}>
             <Grid container>
@@ -74,7 +70,6 @@ const ProfilePage = props => {
 };
 
 const mapStateToProps = function (state) {
-    console.log("State in ProfilePage", state);
     return {
        likedImages: likedImagesSelector(state),
        userProfile: userProfileSelector(state)

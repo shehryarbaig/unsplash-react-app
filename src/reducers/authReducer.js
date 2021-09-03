@@ -9,7 +9,6 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_TOKEN:
-      console.log("Reducer ",action.payload)
       const data = action.payload;
       return {
         ...state,

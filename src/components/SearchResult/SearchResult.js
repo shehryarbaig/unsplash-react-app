@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { useSearchResultStyle } from './SearchResult.style';
 import { Grid } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
@@ -8,16 +8,15 @@ import { getQueryImages } from '../../actions';
 import ImagesList from '../ImagesList';
 import VisibilitySensor from "react-visibility-sensor";
 import { CircularProgress } from '@material-ui/core';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { setQuery, getNewQueryImages } from '../../actions';
 import { capitalizeFirstLetter } from '../../utils';
-import { imageSelector, queryImagesSelector, querySelector } from '../../selectors';
+import { queryImagesSelector, querySelector } from '../../selectors';
 
 const SearchResult = props => {
     const classes = useSearchResultStyle();
     const dispatch = useDispatch();
-    //const params = useParams();
     const location = useLocation();
     const {queryImages, query} = props;
 
