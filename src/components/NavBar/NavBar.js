@@ -17,6 +17,7 @@ import { getToken } from '../../actions';
 import { setUserProfile } from '../../actions/profile';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { IconButton } from '@material-ui/core';
+import SearchBar from '../SearchBar';
 
 
 
@@ -72,23 +73,12 @@ const NavBar = () => {
           <Typography variant="h6" className={classes.title}>
             UnSplash
           </Typography>
-          <div className={classes.searchContainer}>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ 'aria-label': 'search' }}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyPress={(e) => e.key === "Enter" ? handleOnClick(searchQuery) : null}
-
-              />
+          <div className={classes.searchBarContainer}>
+            <div className={classes.searchBarWidth}>
+            <SearchBar/>
             </div>
+          
+
           </div>
           {/* <Button className={classes.loginButton} onClick={handleButtonOnClick} >Login</Button> */}
           {myState.accessToken!=null && 
