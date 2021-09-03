@@ -47,7 +47,7 @@ const NavBar = () => {
           <title id="unsplash-home">Unsplash Home</title><path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path></svg>
           <div className={classes.searchBarContainer}>
             <div className={classes.searchBarWidth}>
-            <SearchBar/>
+            <SearchBar inputCustomStyle={{height:"38px"}}/>
             </div>
           </div>
           {myState.accessToken!=null && 

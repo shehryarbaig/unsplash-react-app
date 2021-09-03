@@ -22,7 +22,7 @@ export const useHomePageStyle = makeStyles((theme) => ({
         fontSize: 18,
         lineHeight: 1.6,
         fontWeight: 450,
-        marginTop:"10px",
+        marginTop:"16px",
     },
     titleDescription2: {
         fontSize: 18,
@@ -36,7 +36,7 @@ export const useHomePageStyle = makeStyles((theme) => ({
 
     },
     searchBar:{
-        marginTop:"12px",
+        marginTop:"24px",
         width:"100%"
     },
     heading:{
