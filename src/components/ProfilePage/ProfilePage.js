@@ -44,13 +44,9 @@ const ProfilePage = props => {
         <div className={classes.root}>
             <Grid container>
                 <Grid item xs={12} sm={7}>
-                    {/* <Paper className={classes.paper}>xs=6</Paper> */}
                     <Typography className={classes.categoryTitle} >{userProfile.name}</Typography>
                     <Typography className={classes.categoryDescription} >Download free, beautiful high-quality photos liked by {userProfile.first_name} </Typography>
 
-                </Grid>
-                <Grid item xs={12} sm={5}>
-                    {/* <Paper className={classes.paper}>xs=4</Paper> */}
                 </Grid>
 
                 <Grid className={classes.imagesGrid} item sm={12}  >
