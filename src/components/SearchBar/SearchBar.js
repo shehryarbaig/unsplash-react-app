@@ -8,6 +8,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 const SearchBar = props => {
 
+    const {customStyles, inputCustomStyle} = props;
     const classes = useSearchBarStyles();
     const [searchQuery, setSearchQuery] = useState("");
     const history = useHistory();
@@ -20,16 +21,17 @@ const SearchBar = props => {
 
     return (
         <div className={classes.searchContainer}>
-            <div className={classes.search}>
+            <div className={classes.search} style={customStyles}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
               <InputBase
-                placeholder="Search…"
+                placeholder="Search free high-resolution photos"
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
                 }}
+                style={inputCustomStyle}
                 inputProps={{ 'aria-label': 'search' }}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" ? handleOnClick(searchQuery) : null}

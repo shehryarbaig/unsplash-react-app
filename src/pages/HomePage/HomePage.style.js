@@ -45,6 +45,35 @@ export const useHomePageStyle = makeStyles((theme) => ({
     },
     heading:{
         width:"60%"
+    },
+    bottomRight:{
+        position: "absolute",
+        bottom: "8px",
+        right: "16px",
+        paddingBottom:"12px"
+    },
+    bottomRightContainer:{
+        height:"58px",
+        alignItems:"flex-end",
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"flex-end"
+    },
+    squareSpaceImg:{
+        height:"34px",
+        width:"150px"
+    },
+    bottomText:{
+        fontSize:"13px",
+        height:"20px",
+        textShadow:"0 1px 8px rgb(0 0 0 / 10%)",
+        fontWeight:450
+    },
+    bottomLeft:{
+        position:"absolute",
+        bottom:"8px",
+        left:"16px",
+        paddingBottom:"12px"
     }
     
 }));

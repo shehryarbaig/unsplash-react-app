@@ -51,7 +51,7 @@ const HomePage = props => {
                 <source srcset="https://images.unsplash.com/photo-1629831676333-8e33b2d7cdd9?ixid=MnwxMjA3fDB8MHxwaG90by1vZi10aGUtZGF5fHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;dpr=1&amp;auto=format%2Ccompress&amp;fit=crop&amp;w=599&amp;h=310 1x, https://images.unsplash.com/photo-1629831676333-8e33b2d7cdd9?ixid=MnwxMjA3fDB8MHxwaG90by1vZi10aGUtZGF5fHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;dpr=2&amp;auto=format%2Ccompress&amp;fit=crop&amp;w=599&amp;h=310 2x" media="(min-width: 400px)" />
                 <source srcset="https://images.unsplash.com/photo-1629831676333-8e33b2d7cdd9?ixid=MnwxMjA3fDB8MHxwaG90by1vZi10aGUtZGF5fHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;dpr=1&amp;auto=format%2Ccompress&amp;fit=crop&amp;w=399&amp;h=230 1x, https://images.unsplash.com/photo-1629831676333-8e33b2d7cdd9?ixid=MnwxMjA3fDB8MHxwaG90by1vZi10aGUtZGF5fHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;dpr=2&amp;auto=format%2Ccompress&amp;fit=crop&amp;w=399&amp;h=230 2x" media="(min-width: 200px)" />
                 <source srcset="https://images.unsplash.com/photo-1629831676333-8e33b2d7cdd9?ixid=MnwxMjA3fDB8MHxwaG90by1vZi10aGUtZGF5fHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;dpr=1&amp;auto=format%2Ccompress&amp;fit=crop&amp;w=199&amp;h=230 1x, https://images.unsplash.com/photo-1629831676333-8e33b2d7cdd9?ixid=MnwxMjA3fDB8MHxwaG90by1vZi10aGUtZGF5fHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;dpr=2&amp;auto=format%2Ccompress&amp;fit=crop&amp;w=199&amp;h=230 2x" />
-                <img role="presentation"
+                <img style={{filter: "brightness(0.60)"}} role="presentation"
                     src="https://images.unsplash.com/photo-1629831676333-8e33b2d7cdd9?ixid=MnwxMjA3fDB8MHxwaG90by1vZi10aGUtZGF5fHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format%2Ccompress&amp;fit=crop&amp;w=1000&amp;h=1000" />
 
             </picture>
@@ -62,9 +62,21 @@ const HomePage = props => {
                     <Typography className={classes.titleDescription2} >Powered by creators everywhere.</Typography>
 
                 <div className={classes.searchBar}>
-                <SearchBar/>
+                <SearchBar customStyles={{borderRadius:"5px"}} inputCustomStyle={{height:"50px"}}/>
                 </div>
                 </div>
+            </div>
+            <div className={classes.bottomRight}>
+                <div className={classes.bottomRightContainer}>
+                <div >
+                <img className={classes.squareSpaceImg} src="https://images.unsplash.com/file-1606177908946-d1eed1cbe4f5image"/>
+                </div>
+                <Typography className={classes.bottomText} >Start your website with Squarespace today.</Typography>
+
+                </div>
+            </div>
+            <div className={classes.bottomLeft}>
+            <Typography className={classes.bottomText} >Photo of the Day by Marc Thunis</Typography>
             </div>
         </div>
     );
