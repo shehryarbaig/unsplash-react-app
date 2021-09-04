@@ -6,6 +6,7 @@ import queryImagesData from "./queryImagesData";
 import authReducer from "./authReducer";
 import photoLikes from "./photoLikes";
 import profile from "./profile"
+import homePageImages from "./homePageImages";
 
 const reducers = combineReducers({
     tabHandler,
@@ -14,7 +15,8 @@ const reducers = combineReducers({
     queryImagesData,
     authReducer,
     photoLikes,
-    profile
+    profile,
+    homePageImages
 });
 
 export default reducers;

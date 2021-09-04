@@ -1,6 +1,6 @@
 import { takeLatest, all } from "@redux-saga/core/effects";
-import { GET_TOPICS_DATA, GET_NEW_TOPIC_IMAGES, GET_TOPIC_IMAGES, GET_QUERY_IMAGES, GET_NEW_QUERY_IMAGES, GET_TOKEN , GET_LIKED_PHOTOS_ID, GET_MY_PROFILE, GET_NEW_LIKED_IMAGES, GET_LIKED_IMAGES} from "../type";
-import { handleGetTopicImages, handleGetNewTopicImages, handleGetTopics, handleGetNewQueryImages, handleGetQueryImages, handleGetLikedPhotosId, handleGetUserProfile, handleGetNewLikedImages, handleGetLikedImages } from "./handlers/unsplashApi";
+import { GET_TOPICS_DATA, GET_NEW_TOPIC_IMAGES, GET_TOPIC_IMAGES, GET_QUERY_IMAGES, GET_NEW_QUERY_IMAGES, GET_TOKEN , GET_LIKED_PHOTOS_ID, GET_MY_PROFILE, GET_NEW_LIKED_IMAGES, GET_LIKED_IMAGES, GET_NEW_HOME_PAGE_IMAGES, GET_HOME_PAGE_IMAGES} from "../type";
+import { handleGetTopicImages, handleGetNewTopicImages, handleGetTopics, handleGetNewQueryImages, handleGetQueryImages, handleGetLikedPhotosId, handleGetUserProfile, handleGetNewLikedImages, handleGetLikedImages, handleGetNewHomePageImages, handleGetHomePageImages } from "./handlers/unsplashApi";
 import { handleGetToken } from "./handlers/auth";
 
 export default function* rootSaga() {
@@ -14,6 +14,8 @@ export default function* rootSaga() {
         yield takeLatest(GET_LIKED_PHOTOS_ID, handleGetLikedPhotosId),
         yield takeLatest(GET_MY_PROFILE, handleGetUserProfile),
         yield takeLatest(GET_NEW_LIKED_IMAGES, handleGetNewLikedImages),
-        yield takeLatest(GET_LIKED_IMAGES, handleGetLikedImages)
+        yield takeLatest(GET_LIKED_IMAGES, handleGetLikedImages),
+        yield takeLatest(GET_NEW_HOME_PAGE_IMAGES, handleGetNewHomePageImages),
+        yield takeLatest(GET_HOME_PAGE_IMAGES, handleGetHomePageImages)
     ]);
 }

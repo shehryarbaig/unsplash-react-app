@@ -1,11 +1,12 @@
 import { call, put } from "@redux-saga/core/effects";
 import { setQueryImages, setTopicsData, setNewQueryImages, setLikedPhotosId } from "../../actions";
 import { setTopicImages, setNewTopicImages } from "../../actions/topicsImagesSetter";
-import { requestGetTopicImages, requestGetTopics, requestGetQueryImages, requestGetUserProfile, requestGetLikedPhotos } from "../requests/unsplashApi";
+import { requestGetTopicImages, requestGetTopics, requestGetQueryImages, requestGetUserProfile, requestGetLikedPhotos, requestGetHomePageImages } from "../requests/unsplashApi";
 import { imagesSchema } from "../../imagesSchema";
 import { normalize } from "normalizr";
 import { setUserProfile } from "../../actions/profile";
 import { setLikedImages, setNewLikedImages } from "../../actions/photoLikes";
+import { setHomePageImages, setNewHomePageImages } from "../../actions/homePageImages";
 
 export function* handleGetTopics(action){
     try
@@ -27,6 +28,34 @@ export function* handleGetTopicImages(action){
         const {data} = response;
         const normalizedData = normalize(data, [imagesSchema]);
         yield put(setTopicImages(normalizedData.entities));
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+}
+
+export function* handleGetHomePageImages(action){
+    try
+    {
+        const response = yield call(requestGetHomePageImages, action.pageNumber);
+        const {data} = response;
+        const normalizedData = normalize(data, [imagesSchema]);
+        yield put(setHomePageImages(normalizedData.entities));
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+}
+
+export function* handleGetNewHomePageImages(action){
+    try
+    {
+        const response = yield call(requestGetHomePageImages, 1);
+        const {data} = response;
+        const normalizedData = normalize(data, [imagesSchema]);
+        yield put(setNewHomePageImages(normalizedData.entities));
     }
     catch(error)
     {

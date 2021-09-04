@@ -70,6 +70,15 @@ export const useHomePageStyle = makeStyles((theme) => ({
         bottom:"8px",
         left:"16px",
         paddingBottom:"12px"
+    },
+    imagesContainer:{
+        display:"flex",
+        justifyContent:"center",
+        marginTop:"48px"
+    },
+    progressBar:{
+        display:"flex",
+        justifyContent:"center",
     }
     
 }));

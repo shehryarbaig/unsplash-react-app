@@ -1,4 +1,5 @@
 export const topicImagesSelector = (state) => state.topicsImagesSetter.topicImages
+export const homePageImagesSelector = (state) => state.homePageImages.homePageImages
 export const likedImagesSelector = (state) => state.photoLikes.likedImages
 export const queryImagesSelector = (state) => state.queryImagesData.queryImages
 export const querySelector = (state) => state.queryImagesData.query
@@ -18,6 +19,10 @@ export const imageSelector = (state,type) => {
     else if(type === "Profile")
     {
         return likedImagesSelector(state)
+    }
+    else if(type === "Home Page")
+    {
+        return homePageImagesSelector(state)
     }
 }
 

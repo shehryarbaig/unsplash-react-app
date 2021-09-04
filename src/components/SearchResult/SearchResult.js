@@ -3,7 +3,6 @@ import { connect, useDispatch } from 'react-redux';
 import { useSearchResultStyle } from './SearchResult.style';
 import { Grid } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
-import { Paper } from '@material-ui/core';
 import { getQueryImages } from '../../actions';
 import ImagesList from '../ImagesList';
 import VisibilitySensor from "react-visibility-sensor";

@@ -15,6 +15,13 @@ export function requestGetTopicImages(topic, pageNumber) {
     });
 }
 
+export function requestGetHomePageImages(pageNumber) {
+    return axios.request({
+        method: 'get',
+        url: `https://api.unsplash.com/photos/random?count=10&page=${pageNumber}&client_id=${ACCESS_ID}`
+    });
+}
+
 export function requestGetQueryImages(query, pageNumber) {
     return axios.request({
         method: 'get',

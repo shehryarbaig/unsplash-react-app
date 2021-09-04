@@ -1,19 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { useHomePageStyle } from "./HomePage.style";
-import { useDispatch } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { changeActiveTab } from '../../actions';
 import { Typography } from '@material-ui/core';
 import SearchBar from '../../components/SearchBar';
+import { getHomePageImages, getNewHomePageImages } from '../../actions/homePageImages';
+import { homePageImagesSelector } from '../../selectors';
+import VisibilitySensor from "react-visibility-sensor";
+import { CircularProgress } from '@material-ui/core';
+const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));
 
 const HomePage = props => {
     const classes = useHomePageStyle();
     const dispatch = useDispatch();
+    const {homePageImages} = props;
+
+    function fetchMoreImages() {
+
+        homePageImages &&  dispatch(getHomePageImages((Object.keys(homePageImages).length / 10) + 1)) ;
+    }
 
     useEffect(() => {
         dispatch(changeActiveTab(0));
-    }, [])
+        dispatch(getNewHomePageImages());
+    }, []);
+
+    function onChange(isVisible) {
+        if(isVisible)
+        {
+            fetchMoreImages();
+        }
+    }
 
     return (
+        <>
         <div className={classes.container} >
             <picture>
                 <source srcset="https://images.unsplash.com/photo-1629831676333-8e33b2d7cdd9?ixid=MnwxMjA3fDB8MHxwaG90by1vZi10aGUtZGF5fHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;dpr=1&amp;auto=format%2Ccompress&amp;fit=crop&amp;w=4799&amp;h=594 1x, https://images.unsplash.com/photo-1629831676333-8e33b2d7cdd9?ixid=MnwxMjA3fDB8MHxwaG90by1vZi10aGUtZGF5fHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;dpr=2&amp;auto=format%2Ccompress&amp;fit=crop&amp;w=4799&amp;h=594 2x" media="(min-width: 4600px)" />
@@ -68,8 +88,24 @@ const HomePage = props => {
             <Typography className={classes.bottomText} >Photo of the Day by Marc Thunis</Typography>
             </div>
         </div>
+        <div className={classes.imagesContainer}>
+        <Suspense fallback={<div>Loading</div>}>
+                <ImagesList imageType="Home Page" />
+        </Suspense>
+        </div>
+        <div className={classes.progressBar}>
+        <VisibilitySensor onChange={onChange}>
+            <CircularProgress />
+        </VisibilitySensor>
+        </div>
+        </>
     );
 };
 
-
-export default HomePage;
+const mapStateToProps = function (state) {
+    return {
+       homePageImages: homePageImagesSelector(state)
+    }
+  } 
+  
+export default connect(mapStateToProps)(HomePage);
