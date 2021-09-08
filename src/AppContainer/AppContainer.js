@@ -1,6 +1,6 @@
 import React from 'react';
-import NavBar from '../NavBar';
-import ScrollableTabs from '../ScrollableTabs';
+import NavBar  from "../components/NavBar";
+import ScrollableTabs from '../components/ScrollableTabs';
 
 const AppContainer = props => {
    

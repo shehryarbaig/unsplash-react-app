@@ -6,8 +6,8 @@ import { CircularProgress } from '@material-ui/core';
 import SearchBar from '../../components/SearchBar';
 import { changeActiveTab } from '../../actions';
 import { getHomePageImages, getNewHomePageImages } from '../../actions/homePageImages';
-import { homePageImagesSelector } from '../../selectors';
 import { useHomePageStyle } from "./HomePage.style";
+import { homePageImagesSelector } from '../../reducers/homePageImages';
 const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));
 
 const HomePage = props => {

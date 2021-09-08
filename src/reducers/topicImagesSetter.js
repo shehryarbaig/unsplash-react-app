@@ -1,4 +1,4 @@
-import { SET_TOPIC_IMAGES, SET_NEW_TOPIC_IMAGES } from "../type";
+import { SET_TOPIC_IMAGES, SET_NEW_TOPIC_IMAGES } from "../actions/type";
 
 const initialState = {
     topicImages: {}
@@ -17,5 +17,7 @@ const topicsImagesSetter = (state = initialState, action) => {
         default: return state;
     }
 }
+
+export const topicImagesSelector = (state) => state.topicsImagesSetter.topicImages;
 
 export default topicsImagesSetter;

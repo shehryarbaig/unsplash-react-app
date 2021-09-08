@@ -4,9 +4,10 @@ import VisibilitySensor from "react-visibility-sensor";
 import { Grid } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { CircularProgress } from '@material-ui/core';
-import { likedImagesSelector, userProfileSelector } from '../../selectors';
 import { getLikedImages, getNewLikedImages } from '../../actions/photoLikes';
 import { useProfilePageStyle } from './ProfilePage.style';
+import { likedImagesSelector } from '../../selectors';
+import { userProfileSelector } from '../../selectors';
 const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));
 
 

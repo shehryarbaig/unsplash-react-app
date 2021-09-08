@@ -1,4 +1,4 @@
-import { CHANGE_TAB, CHANGE_TAB_URL } from "../type";
+import { CHANGE_TAB, CHANGE_TAB_URL } from "../actions/type";
 
 
 const initialState = {

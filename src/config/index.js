@@ -1,1 +1,1 @@
-export const ACCESS_ID = "qwznuSGaQSPzh2IvmSQp2ebPs5Yntu6tEt4Gmnk9Et0";
+export const ACCESS_ID = process.env.REACT_APP_ACCESS_ID;

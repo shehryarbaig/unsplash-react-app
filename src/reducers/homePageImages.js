@@ -1,4 +1,4 @@
-import { SET_HOME_PAGE_IMAGES, SET_NEW_HOME_PAGE_IMAGES } from "../type";
+import { SET_HOME_PAGE_IMAGES, SET_NEW_HOME_PAGE_IMAGES } from "../actions/type";
 
 const initialState = {
     homePageImages: {}
@@ -17,5 +17,7 @@ const homePageImages = (state = initialState, action) => {
         default: return state;
     }
 }
+
+export const homePageImagesSelector = (state) => state.homePageImages.homePageImages;
 
 export default homePageImages;

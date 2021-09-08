@@ -8,8 +8,8 @@ import { CircularProgress } from '@material-ui/core';
 import ImagesList from '../ImagesList';
 import { setQuery, getNewQueryImages, getQueryImages } from '../../actions';
 import { capitalizeFirstLetter } from '../../utils';
-import { queryImagesSelector, querySelector } from '../../selectors';
 import { useSearchResultStyle } from './SearchResult.style';
+import { queryImagesSelector, querySelector } from '../../selectors';
 
 const SearchResult = props => {
     const classes = useSearchResultStyle();

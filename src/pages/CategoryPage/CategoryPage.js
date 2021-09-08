@@ -6,8 +6,8 @@ import { Typography } from '@material-ui/core';
 import { CircularProgress } from '@material-ui/core';
 import { getTopicImages, getNewTopicImages } from '../../actions/topicsImagesSetter';
 import { changeActiveTab } from '../../actions';
-import { topicImagesSelector } from '../../selectors';
 import { useCategoryPageStyle } from './CategoryPage.style';
+import { topicImagesSelector } from '../../selectors';
 const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));
 
 const CategoryPage = props => {

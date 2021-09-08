@@ -1,5 +1,5 @@
 import {Redirect, Route } from 'react-router-dom';
-import AppContainer from '../components/AppContainer';
+import AppContainer from '../AppContainer';
 
 const PrivateRoute=({render:Component, isScrollaleTabs, ...rest })=> {
 	return (

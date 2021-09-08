@@ -1,4 +1,4 @@
-import { SET_TOPICS_DATA, SET_TOPIC_DATA } from "../type";
+import { SET_TOPICS_DATA, SET_TOPIC_DATA } from "../actions/type";
 
 const initialState = {
     topicsData: [],
@@ -18,5 +18,7 @@ const topicsDataSetter = (state = initialState, action) => {
         default: return state;
     }
 }
+
+export const topicsDataSelector = (state) => state.topicsDataSetter.topicsData;
 
 export default topicsDataSetter;

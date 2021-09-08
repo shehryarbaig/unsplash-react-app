@@ -9,8 +9,11 @@ import GetAppRoundedIcon from '@material-ui/icons/GetAppRounded';
 import axios from "axios";
 import ThumbUpAltRoundedIcon from '@material-ui/icons/ThumbUpAltRounded';
 import { getLikedPhotosId } from '../../actions';
-import { imageSelector } from '../../selectors';
 import { useImageListStyle } from './ImagesList.style';
+import { imageSelector, topicImagesSelector } from '../../selectors';
+import { queryImagesSelector } from '../../selectors';
+import { likedImagesSelector } from '../../selectors';
+import { homePageImagesSelector } from '../../selectors';
 
 
 const ImagesList = props => {
@@ -114,8 +117,8 @@ const ImagesList = props => {
 
 const mapStateToProps = function (state, ownProps) {
   const {imageType} = ownProps;
-  return {
-     images: imageSelector(state, imageType)
+  return{
+    images: imageSelector(state,imageType)
   }
 } 
 

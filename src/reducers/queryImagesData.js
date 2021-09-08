@@ -1,4 +1,4 @@
-import { SET_QUERY_IMAGES, SET_NEW_QUERY_IMAGES, SET_QUERY } from "../type";
+import { SET_QUERY_IMAGES, SET_NEW_QUERY_IMAGES, SET_QUERY } from "../actions/type";
 
 const initialState = {
     query: "",
@@ -22,5 +22,8 @@ const queryImagesData = (state = initialState, action) => {
         default: return state;
     }
 }
+
+export const queryImagesSelector = (state) => state.queryImagesData.queryImages;
+export const querySelector = (state) => state.queryImagesData.query;
 
 export default queryImagesData;

@@ -1,5 +1,5 @@
 import {Route } from 'react-router-dom';
-import AppContainer from '../components/AppContainer';
+import AppContainer from '../AppContainer';
 
 const PublicRoute=({render:Component, isScrollaleTabs, ...rest })=> {
 	return (

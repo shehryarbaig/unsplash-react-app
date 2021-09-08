@@ -1,4 +1,4 @@
-import { SET_LIKED_PHOTOS_ID, SET_LIKED_IMAGES, SET_NEW_LIKED_IMAGES } from "../type";
+import { SET_LIKED_PHOTOS_ID, SET_LIKED_IMAGES, SET_NEW_LIKED_IMAGES } from "../actions/type";
 
 const initialState = {
     likedPhotosId: [],
@@ -31,5 +31,7 @@ const photoLikes = (state = initialState, action) => {
         default: return state;
     }
 }
+
+export const likedImagesSelector = (state) => state.photoLikes.likedImages;
 
 export default photoLikes;

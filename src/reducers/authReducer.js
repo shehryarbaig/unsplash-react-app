@@ -1,4 +1,4 @@
-import { SET_TOKEN } from "../type";
+import { SET_TOKEN } from "../actions/type";
 
 const initialState = {
   accessToken: null,

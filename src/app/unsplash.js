@@ -10,9 +10,9 @@ const scopes = [
   "read_collections",
   "write_collections"
 ];
-export const redirectUri = "http://localhost:3000/";
-export const clientId = "qwznuSGaQSPzh2IvmSQp2ebPs5Yntu6tEt4Gmnk9Et0";
-export const clientSecret = "IqHy4qJRkna9Mh1XvFJLxCZAc8wJDMGUENlZaaq4uH0";
+export const redirectUri = process.env.REACT_APP_REDIRECT_URI;
+export const clientId = process.env.REACT_APP_CLIENT_ID;
+export const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
 export const loginUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
   "+"
 )}&response_type=code`;
