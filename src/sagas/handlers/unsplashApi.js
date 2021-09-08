@@ -1,9 +1,9 @@
 import { call, put } from "@redux-saga/core/effects";
+import { normalize } from "normalizr";
 import { setQueryImages, setTopicsData, setNewQueryImages, setLikedPhotosId } from "../../actions";
 import { setTopicImages, setNewTopicImages } from "../../actions/topicsImagesSetter";
 import { requestGetTopicImages, requestGetTopics, requestGetQueryImages, requestGetUserProfile, requestGetLikedPhotos, requestGetHomePageImages } from "../requests/unsplashApi";
 import { imagesSchema } from "../../imagesSchema";
-import { normalize } from "normalizr";
 import { setUserProfile } from "../../actions/profile";
 import { setLikedImages, setNewLikedImages } from "../../actions/photoLikes";
 import { setHomePageImages, setNewHomePageImages } from "../../actions/homePageImages";

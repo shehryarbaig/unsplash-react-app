@@ -13,7 +13,7 @@ export const useHomePageStyle = makeStyles((theme) => ({
         justifyContent: "center",
 
     },
-    title: {
+    UnsplashTitle: {
         fontSize: 46,
         lineHeight: 1.2,
         fontWeight: 700,

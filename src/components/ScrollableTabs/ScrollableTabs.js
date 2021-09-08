@@ -1,12 +1,12 @@
 import React from 'react';
-import { useScrollableTabsStyle } from './ScrollableTabs.style';
+import { useSelector, useDispatch } from "react-redux";
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { useHistory } from 'react-router';
-import { useSelector, useDispatch } from "react-redux";
 import { changeActiveTab } from '../../actions';
 import { handleTabChange } from '../../utils';
+import { useScrollableTabsStyle } from './ScrollableTabs.style';
 
 
 function a11yProps(index) {

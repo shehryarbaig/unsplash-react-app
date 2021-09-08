@@ -1,13 +1,13 @@
 import React, { Suspense, useEffect } from 'react';
-import { useHomePageStyle } from "./HomePage.style";
 import { connect, useDispatch } from 'react-redux';
-import { changeActiveTab } from '../../actions';
+import VisibilitySensor from "react-visibility-sensor";
 import { Typography } from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 import SearchBar from '../../components/SearchBar';
+import { changeActiveTab } from '../../actions';
 import { getHomePageImages, getNewHomePageImages } from '../../actions/homePageImages';
 import { homePageImagesSelector } from '../../selectors';
-import VisibilitySensor from "react-visibility-sensor";
-import { CircularProgress } from '@material-ui/core';
+import { useHomePageStyle } from "./HomePage.style";
 const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));
 
 const HomePage = props => {
@@ -66,7 +66,7 @@ const HomePage = props => {
             </picture>
             <div className={classes.headingContainer}>
                 <div className={classes.heading}>
-                    <Typography className={classes.title} >Unsplash</Typography>
+                    <Typography className={classes.UnsplashTitle} >Unsplash</Typography>
                     <Typography className={classes.titleDescription1} >The internet's source of freely usable images.</Typography>
                     <Typography className={classes.titleDescription2} >Powered by creators everywhere.</Typography>
 

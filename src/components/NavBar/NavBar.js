@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-import { useNavBarStyles } from "./NavBar.style"
-import { useState } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { setLikedPhotosId, setToken } from '../../actions';
-import { loginUrl } from '../../app/unsplash';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { IconButton } from '@material-ui/core';
+import { setLikedPhotosId, setToken } from '../../actions';
 import SearchBar from '../SearchBar';
+import { loginUrl } from '../../app/unsplash';
+import { useNavBarStyles } from "./NavBar.style"
 
 
 

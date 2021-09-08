@@ -1,14 +1,12 @@
-import React from 'react';
-import { useProfilePageStyle } from './ProfilePage.style';
-import { Grid } from '@material-ui/core';
+import React , { Suspense, useEffect }from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import VisibilitySensor from "react-visibility-sensor";
+import { Grid } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
-import { Suspense, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { CircularProgress } from '@material-ui/core';
 import { likedImagesSelector, userProfileSelector } from '../../selectors';
 import { getLikedImages, getNewLikedImages } from '../../actions/photoLikes';
-import { connect } from 'react-redux';
+import { useProfilePageStyle } from './ProfilePage.style';
 const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));
 
 

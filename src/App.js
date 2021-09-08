@@ -1,9 +1,9 @@
 import React from 'react';
-import store from './store';
 import { Provider } from 'react-redux';
+import store from './store';
 import Routes from './routes';
-import { ThemeProvider } from '@material-ui/styles';
 import theme from './theme';
+import { ThemeProvider } from '@material-ui/styles';
 
 const App = props => {
   

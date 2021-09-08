@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import PublicRoute from './PublicRoute';
 import CategoryPage from '../pages/CategoryPage';
-import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from 'react';
 import { setToken } from '../actions';
 import { getTopicsData } from '../actions/topicsDataSetter';
 import SearchResult from '../components/SearchResult';

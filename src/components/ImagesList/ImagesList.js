@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useImageListStyle } from './ImagesList.style';
+import { connect, useSelector, useDispatch  } from 'react-redux';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
@@ -8,10 +8,9 @@ import IconButton from '@material-ui/core/IconButton';
 import GetAppRoundedIcon from '@material-ui/icons/GetAppRounded';
 import axios from "axios";
 import ThumbUpAltRoundedIcon from '@material-ui/icons/ThumbUpAltRounded';
-import { useSelector, useDispatch } from 'react-redux';
 import { getLikedPhotosId } from '../../actions';
-import { connect } from 'react-redux';
 import { imageSelector } from '../../selectors';
+import { useImageListStyle } from './ImagesList.style';
 
 
 const ImagesList = props => {

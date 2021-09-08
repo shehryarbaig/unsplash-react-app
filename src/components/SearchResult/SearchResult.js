@@ -1,17 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
-import { useSearchResultStyle } from './SearchResult.style';
+import { useLocation } from 'react-router-dom';
+import VisibilitySensor from "react-visibility-sensor";
 import { Grid } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
-import { getQueryImages } from '../../actions';
-import ImagesList from '../ImagesList';
-import VisibilitySensor from "react-visibility-sensor";
 import { CircularProgress } from '@material-ui/core';
-import { useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
-import { setQuery, getNewQueryImages } from '../../actions';
+import ImagesList from '../ImagesList';
+import { setQuery, getNewQueryImages, getQueryImages } from '../../actions';
 import { capitalizeFirstLetter } from '../../utils';
 import { queryImagesSelector, querySelector } from '../../selectors';
+import { useSearchResultStyle } from './SearchResult.style';
 
 const SearchResult = props => {
     const classes = useSearchResultStyle();

@@ -1,13 +1,11 @@
 import React from "react";
-import { render, screen } from '@testing-library/react';
-import App from './App';
 import { act } from "react-dom/test-utils";
 import { Provider } from "react-redux";
 import ReactDOM from "react-dom";
 import store from "./store";
 import Routes from "./routes"
-import { ThemeProvider } from '@material-ui/styles';
 import theme from './theme';
+import { ThemeProvider } from '@material-ui/styles';
 
 test("renders home page without crashing", () => {
   const div = document.createElement("div");

@@ -1,9 +1,8 @@
-import React from 'react';
-import { useSearchBarStyles } from './SearchBar.style';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import { useSearchBarStyles } from './SearchBar.style';
 
 
 const SearchBar = props => {
