@@ -10,7 +10,7 @@ import axios from "axios";
 import ThumbUpAltRoundedIcon from '@material-ui/icons/ThumbUpAltRounded';
 import { getLikedPhotosId } from '../../actions';
 import { useImageListStyle } from './ImagesList.style';
-import { imageSelector, topicImagesSelector } from '../../selectors';
+import { topicImagesSelector } from '../../selectors';
 import { queryImagesSelector } from '../../selectors';
 import { likedImagesSelector } from '../../selectors';
 import { homePageImagesSelector } from '../../selectors';
@@ -117,8 +117,29 @@ const ImagesList = props => {
 
 const mapStateToProps = function (state, ownProps) {
   const {imageType} = ownProps;
-  return{
-    images: imageSelector(state,imageType)
+  if(imageType === "Topic")
+  {
+      return {
+        images: topicImagesSelector(state)
+      }
+  }
+  else if(imageType === "Query")
+  {
+    return {
+        images: queryImagesSelector(state)
+    }
+  }
+  else if(imageType === "Profile")
+  {
+    return {
+      images: likedImagesSelector(state)
+    }
+  }
+  else if(imageType === "Home Page")
+  {
+    return {
+      images: homePageImagesSelector(state)
+    }
   }
 } 
 

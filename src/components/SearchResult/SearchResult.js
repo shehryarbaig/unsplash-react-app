@@ -10,18 +10,14 @@ import { setQuery, getNewQueryImages, getQueryImages } from '../../actions';
 import { capitalizeFirstLetter } from '../../utils';
 import { useSearchResultStyle } from './SearchResult.style';
 import { queryImagesSelector, querySelector } from '../../selectors';
+import { useQuery } from '../../utils';
 
 const SearchResult = props => {
     const classes = useSearchResultStyle();
     const dispatch = useDispatch();
     const location = useLocation();
     const {queryImages, query} = props;
-
-    const useQuery = () => {
-        return new URLSearchParams(location.search);
-      }
-
-    const queryParam = useQuery(); 
+    const queryParam = useQuery(location); 
 
     function fetchMoreImages() {
         dispatch(getQueryImages(query, (Object.keys(queryImages).length / 10) + 1));

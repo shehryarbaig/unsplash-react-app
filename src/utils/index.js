@@ -53,3 +53,8 @@ export const capitalizeFirstLetter = (string) => {
     if(string)
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
+
+
+export const useQuery = (location) => {
+    return new URLSearchParams(location.search);
+    }

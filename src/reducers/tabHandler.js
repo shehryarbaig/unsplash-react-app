@@ -2,8 +2,7 @@ import { CHANGE_TAB, CHANGE_TAB_URL } from "../actions/type";
 
 
 const initialState = {
-    activeTab:0,
-    activeUrl: "https://www.google.com"
+    activeTab:0
 }
 
 const tabHandler = (state = initialState, action) => {
@@ -11,10 +10,6 @@ const tabHandler = (state = initialState, action) => {
         case CHANGE_TAB: return {
             ...state,
             activeTab: action.payload
-        }
-        case CHANGE_TAB_URL: return {
-            ...state,
-            activeUrl: action.payload
         }
         default: return state;
     }

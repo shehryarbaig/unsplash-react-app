@@ -8,11 +8,11 @@ const topicsImagesSetter = (state = initialState, action) => {
     switch (action.type) {
         case SET_TOPIC_IMAGES: return {
             ...state,
-            topicImages: {...state.topicImages,...action.topic.images},
+            topicImages: {...state.topicImages,...action.payload.images},
           }
         case SET_NEW_TOPIC_IMAGES: return {
             ...state,
-            topicImages: action.topic.images,
+            topicImages: action.payload.images,
           }
         default: return state;
     }
