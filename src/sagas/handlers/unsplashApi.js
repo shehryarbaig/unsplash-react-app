@@ -108,9 +108,9 @@ export function* handleGetNewTopicImages(action){
 export function* handleGetLikedPhotosId(action){
     try
     {
-        for (let page = 0; page < Math.ceil(action.totalLikes/10); page++) {
+        for (let page = 0; page < Math.ceil(action.payload.totalLikes/10); page++) {
 
-            const likedPhotosResponse = yield call(requestGetLikedPhotos,action.likesUrl, action.accessToken, action.tokenType, page+1)
+            const likedPhotosResponse = yield call(requestGetLikedPhotos,action.payload.likesUrl, action.payload.accessToken, action.payload.tokenType, page+1)
             yield put(setLikedPhotosId(likedPhotosResponse.data,page+1));
           }
     }
@@ -135,7 +135,7 @@ export function* handleGetUserProfile(action){
 export function* handleGetLikedImages(action){
     try
     {
-        const response = yield call(requestGetLikedPhotos,action.likesUrl, action.accessToken, action.tokenType, action.pageNumber)
+        const response = yield call(requestGetLikedPhotos,action.payload.likesUrl, action.payload.accessToken, action.payload.tokenType, action.payload.pageNumber)
         const {data} = response;
         const normalizedData = normalize(data, [imagesSchema]);
         yield put(setLikedImages(normalizedData.entities));
@@ -149,7 +149,7 @@ export function* handleGetLikedImages(action){
 export function* handleGetNewLikedImages(action){
     try
     {
-        const response = yield call(requestGetLikedPhotos,action.likesUrl, action.accessToken, action.tokenType, 1)
+        const response = yield call(requestGetLikedPhotos,action.payload.likesUrl, action.payload.accessToken, action.payload.tokenType, 1)
         const {data} = response;
         const normalizedData = normalize(data, [imagesSchema]);
         yield put(setNewLikedImages(normalizedData.entities));

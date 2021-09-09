@@ -3,50 +3,66 @@ import { SET_LIKED_PHOTOS_ID, GET_LIKED_PHOTOS_ID, SET_LIKED_IMAGES, SET_NEW_LIK
 export const setLikedPhotosId = (likedPhotosData, page) => {
     return {
         type: SET_LIKED_PHOTOS_ID,
-        likedPhotosData: likedPhotosData,
-        page:page
+        payload: {
+            likedPhotosData,
+            page
+        }
     }
 }
 
 export const getLikedPhotosId = (likesUrl,totalLikes,accessToken, tokenType) => {
     return {
         type: GET_LIKED_PHOTOS_ID,
-        accessToken:accessToken,
-        tokenType:tokenType,
-        likesUrl:likesUrl,
-        totalLikes:totalLikes
+        payload:{
+            accessToken,
+            tokenType,
+            likesUrl,
+            totalLikes
+        }
     }
 }
 
 export const setLikedImages = (images) => {
     return {
         type: SET_LIKED_IMAGES,
-        likedImages: images
+        payload:{
+            likedImages: images
+            
+        }
     }
 }
 
 export const setNewLikedImages = (newLikedImages) => {
     return {
         type: SET_NEW_LIKED_IMAGES,
-        likedImages: newLikedImages
+        payload:{
+            likedImages: newLikedImages
+            
+        }
     }
 }
 
 export const getLikedImages = (likesUrl, pageNumber, accessToken,tokenType) => {
     return {
         type: GET_LIKED_IMAGES,
-        likesUrl: likesUrl,
-        pageNumber:pageNumber,
-        accessToken:accessToken,
-        tokenType:tokenType,
+        payload:{
+            likesUrl,
+            pageNumber,
+            accessToken,
+            tokenType,
+            
+        }
     }
 }
 
 export const getNewLikedImages = (likesUrl, accessToken,tokenType) => {
     return {
         type: GET_NEW_LIKED_IMAGES,
-        likesUrl:likesUrl,
-        accessToken:accessToken,
-        tokenType:tokenType,
+        payload:{
+            likesUrl,
+            accessToken,
+            tokenType,
+            
+        }
     }
 }
