@@ -3,21 +3,21 @@ import { SET_NEW_HOME_PAGE_IMAGES, SET_HOME_PAGE_IMAGES, GET_HOME_PAGE_IMAGES, G
 export const setHomePageImages = (images) => {
     return {
         type: SET_HOME_PAGE_IMAGES,
-        homePageImages: images
+        payload: images
     }
 }
 
 export const setNewHomePageImages = (newImages) => {
     return {
         type: SET_NEW_HOME_PAGE_IMAGES,
-        homePageImages: newImages
+        payload: newImages
     }
 }
 
 export const getHomePageImages = (pageNumber) => {
     return {
         type: GET_HOME_PAGE_IMAGES,
-        pageNumber: pageNumber
+        payload: {pageNumber}
     }
 }
 

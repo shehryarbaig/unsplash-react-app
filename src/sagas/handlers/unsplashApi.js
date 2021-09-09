@@ -38,7 +38,7 @@ export function* handleGetTopicImages(action){
 export function* handleGetHomePageImages(action){
     try
     {
-        const response = yield call(requestGetHomePageImages, action.pageNumber);
+        const response = yield call(requestGetHomePageImages, action.payload.pageNumber);
         const {data} = response;
         const normalizedData = normalize(data, [imagesSchema]);
         yield put(setHomePageImages(normalizedData.entities));

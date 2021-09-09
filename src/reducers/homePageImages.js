@@ -8,11 +8,11 @@ const homePageImages = (state = initialState, action) => {
     switch (action.type) {
         case SET_HOME_PAGE_IMAGES: return {
             ...state,
-            homePageImages: {...state.homePageImages,...action.homePageImages.images},
+            homePageImages: {...state.homePageImages,...action.payload.images},
           }
         case SET_NEW_HOME_PAGE_IMAGES: return {
             ...state,
-            homePageImages: action.homePageImages.images,
+            homePageImages: action.payload.images,
           }
         default: return state;
     }
