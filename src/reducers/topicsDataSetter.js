@@ -1,11 +1,11 @@
 import { SET_TOPICS_DATA, SET_TOPIC_DATA } from "../actions/type";
 
-const initialState = {
+const INITIAL_STATE = {
     topicsData: [],
     topic: {},
 }
 
-const topicsDataSetter = (state = initialState, action) => {
+const topicsDataSetter = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SET_TOPICS_DATA: return {
             ...state,

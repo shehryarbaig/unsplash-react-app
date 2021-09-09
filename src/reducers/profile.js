@@ -1,11 +1,11 @@
 import { SET_MY_PROFILE } from "../actions/type";
 
 
-const initialState = {
+const INITIAL_STATE = {
     userProfile: {}
 }
 
-const profile = (state = initialState, action) => {
+const profile = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SET_MY_PROFILE: return {
                 ...state,

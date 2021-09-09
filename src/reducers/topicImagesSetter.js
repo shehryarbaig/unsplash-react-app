@@ -1,10 +1,10 @@
 import { SET_TOPIC_IMAGES, SET_NEW_TOPIC_IMAGES } from "../actions/type";
 
-const initialState = {
+const INITIAL_STATE = {
     topicImages: {}
 }
 
-const topicsImagesSetter = (state = initialState, action) => {
+const topicsImagesSetter = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SET_TOPIC_IMAGES: return {
             ...state,

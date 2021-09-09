@@ -1,12 +1,12 @@
 import { SET_TOKEN } from "../actions/type";
 
-const initialState = {
+const INITIAL_STATE = {
   accessToken: null,
   token_type: null,
   scope: null,
 };
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SET_TOKEN:
       const data = action.payload;

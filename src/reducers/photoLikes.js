@@ -1,11 +1,11 @@
 import { SET_LIKED_PHOTOS_ID, SET_LIKED_IMAGES, SET_NEW_LIKED_IMAGES } from "../actions/type";
 
-const initialState = {
+const INITIAL_STATE = {
     likedPhotosId: [],
     likedImages:{}
 }
 
-const photoLikes = (state = initialState, action) => {
+const photoLikes = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SET_LIKED_PHOTOS_ID:
             switch(action.payload.page) {

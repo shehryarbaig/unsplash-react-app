@@ -1,11 +1,11 @@
 import { SET_QUERY_IMAGES, SET_NEW_QUERY_IMAGES, SET_QUERY } from "../actions/type";
 
-const initialState = {
+const INITIAL_STATE = {
     query: "",
     queryImages: {}
 }
 
-const queryImagesData = (state = initialState, action) => {
+const queryImagesData = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SET_QUERY: return {
             ...state,

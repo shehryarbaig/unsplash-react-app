@@ -1,10 +1,10 @@
 import { SET_HOME_PAGE_IMAGES, SET_NEW_HOME_PAGE_IMAGES } from "../actions/type";
 
-const initialState = {
+const INITIAL_STATE = {
     homePageImages: {}
 }
 
-const homePageImages = (state = initialState, action) => {
+const homePageImages = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SET_HOME_PAGE_IMAGES: return {
             ...state,
