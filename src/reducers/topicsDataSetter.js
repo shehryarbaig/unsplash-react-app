@@ -9,11 +9,11 @@ const topicsDataSetter = (state = initialState, action) => {
     switch (action.type) {
         case SET_TOPICS_DATA: return {
             ...state,
-            topicsData: action.payload
+            topicsData: action.payload.topicsData
         }
         case SET_TOPIC_DATA: return {
             ...state,
-            topic: action.payload
+            topic: action.payload.topic
         }
         default: return state;
     }

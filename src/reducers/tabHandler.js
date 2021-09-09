@@ -9,7 +9,7 @@ const tabHandler = (state = initialState, action) => {
     switch (action.type) {
         case CHANGE_TAB: return {
             ...state,
-            activeTab: action.payload
+            activeTab: action.payload.num
         }
         default: return state;
     }

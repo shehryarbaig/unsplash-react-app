@@ -24,7 +24,7 @@ export function* handleGetTopics(action){
 export function* handleGetTopicImages(action){
     try
     {
-        const response = yield call(requestGetTopicImages, action.topic, action.pageNumber);
+        const response = yield call(requestGetTopicImages, action.payload.topic, action.payload.pageNumber);
         const {data} = response;
         const normalizedData = normalize(data, [imagesSchema]);
         yield put(setTopicImages(normalizedData.entities));
@@ -66,7 +66,7 @@ export function* handleGetNewHomePageImages(action){
 export function* handleGetQueryImages(action){
     try
     {
-        const response = yield call(requestGetQueryImages, action.searchQuery, action.pageNumber);
+        const response = yield call(requestGetQueryImages, action.payload.searchQuery, action.payload.pageNumber);
         const {data} = response;
         const normalizedData = normalize(data.results, [imagesSchema]);
         yield put(setQueryImages(normalizedData.entities));
@@ -80,7 +80,7 @@ export function* handleGetQueryImages(action){
 export function* handleGetNewQueryImages(action){
     try
     {
-        const response = yield call(requestGetQueryImages, action.searchQuery, 1);
+        const response = yield call(requestGetQueryImages, action.payload.searchQuery, 1);
         const {data} = response;
         const normalizedData = normalize(data.results, [imagesSchema]);
         yield put(setNewQueryImages(normalizedData.entities));
@@ -94,7 +94,7 @@ export function* handleGetNewQueryImages(action){
 export function* handleGetNewTopicImages(action){
     try
     {
-        const response = yield call(requestGetTopicImages, action.topic,1);
+        const response = yield call(requestGetTopicImages, action.payload.topic,1);
         const {data} = response;
         const normalizedData = normalize(data, [imagesSchema]);
         yield put(setNewTopicImages(normalizedData.entities));
@@ -122,7 +122,7 @@ export function* handleGetLikedPhotosId(action){
 export function* handleGetUserProfile(action){
     try
     {
-        const response = yield call(requestGetUserProfile, action.accessToken, action.tokenType);
+        const response = yield call(requestGetUserProfile, action.payload.accessToken, action.payload.tokenType);
         const {data} = response;
         yield put(setUserProfile(data));
     }

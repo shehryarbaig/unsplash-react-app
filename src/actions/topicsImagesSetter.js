@@ -3,28 +3,32 @@ import { SET_TOPIC_IMAGES, SET_NEW_TOPIC_IMAGES,GET_TOPIC_IMAGES, GET_NEW_TOPIC_
 export const setTopicImages = (topicImages) => {
     return {
         type: SET_TOPIC_IMAGES,
-        payload: topicImages
+        payload: {topicImages}
     }
 }
 
 export const setNewTopicImages = (newTopicImages) => {
     return {
         type: SET_NEW_TOPIC_IMAGES,
-        payload: newTopicImages
+        payload: {newTopicImages}
     }
 }
 
 export const getTopicImages = (topic, pageNumber) => {
     return {
         type: GET_TOPIC_IMAGES,
-        topic:topic,
-        pageNumber: pageNumber
+        payload:{
+            topic,
+            pageNumber
+        }
     }
 }
 
 export const getNewTopicImages = (topic) => {
     return {
         type: GET_NEW_TOPIC_IMAGES,
-        topic:topic
+        payload:{
+            topic
+        }
     }
 }

@@ -9,7 +9,7 @@ const profile = (state = initialState, action) => {
     switch (action.type) {
         case SET_MY_PROFILE: return {
                 ...state,
-                userProfile: action.profile
+                userProfile: action.payload.profile
             }
         default: return state;
     }

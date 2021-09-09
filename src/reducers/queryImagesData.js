@@ -9,15 +9,15 @@ const queryImagesData = (state = initialState, action) => {
     switch (action.type) {
         case SET_QUERY: return {
             ...state,
-            query: action.query
+            query: action.payload.query
         }
         case SET_QUERY_IMAGES: return {
             ...state,
-            queryImages: {...state.queryImages,...action.queryImages.images}
+            queryImages: {...state.queryImages,...action.payload.queryImages.images}
         }
         case SET_NEW_QUERY_IMAGES: return {
             ...state,
-            queryImages: action.queryImages.images
+            queryImages: action.payload.queryImages.images
         }
         default: return state;
     }
