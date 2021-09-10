@@ -17,27 +17,15 @@ import { homePageImagesSelector } from '../../selectors';
 import { likedPhotosIdSelector } from '../../reducers/photoLikes';
 import { accessTokenSelector, tokenTypeSelector } from '../../reducers/authReducer';
 import { likeButtonClick } from '../../actions/photoLikes';
+import { getImage } from '../../actions/imageActions';
 
 
 const ImagesList = props => {
   const classes = useImageListStyle();
-  const { images, getLikedPhotosId,likeButtonClick, userProfile, likedPhotosId, accessToken, tokenType } = props;
+  const { images, getLikedPhotosId,likeButtonClick, userProfile, likedPhotosId,getImage, accessToken, tokenType } = props;
 
   const downloadImage = (url, fileName) => {
-    axios({
-      url: url,
-      method: 'GET',
-      responseType: 'blob'
-    })
-      .then((response) => {
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', `${fileName}.jpg`);
-        document.body.appendChild(link);
-        link.click();
-
-      })
+    getImage(url, fileName);
   }
 
 
@@ -132,7 +120,7 @@ const mapStateToProps = function (state, ownProps) {
     userProfile: userProfileSelector(state),
     likedPhotosId: likedPhotosIdSelector(state),
     accessToken: accessTokenSelector(state),
-    tokenType: tokenTypeSelector(state)
+    tokenType: tokenTypeSelector(state),
   }
   
 } 
@@ -141,6 +129,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getLikedPhotosId: (likesUrl, totalLikes, accessToken, tokenType) => dispatch(getLikedPhotosId(likesUrl, totalLikes, accessToken, tokenType)),
     likeButtonClick: (imageId, isLiked, likesUrl,totalLikes,accessToken,tokenType) => dispatch(likeButtonClick(imageId, isLiked, likesUrl,totalLikes,accessToken,tokenType)),
+    getImage: (url, fileName) => dispatch(getImage(url, fileName)),
   }
 }
 

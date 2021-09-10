@@ -59,3 +59,12 @@ export function requestLikeButtonClick(imageId,isLiked,accessToken, tokenType) {
         url: `https://api.unsplash.com/photos/${imageId}/like`
       })
 }
+
+
+export function requestGetImage(url) {
+    return axios({
+        url: url,
+        method: 'GET',
+        responseType: 'blob'
+      })
+}

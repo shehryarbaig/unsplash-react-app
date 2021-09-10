@@ -10,6 +10,7 @@ import { setLikedPhotosId, setToken } from '../../actions';
 import SearchBar from '../SearchBar';
 import { loginUrl } from '../../app/unsplash';
 import { useNavBarStyles } from "./NavBar.style"
+import { logOutUser } from '../../actions/authActions';
 
 
 
@@ -21,13 +22,7 @@ const NavBar = () => {
   const [redirect, setRedirect] = useState(false);
 
   const handleLogOut = () => {
-      dispatch(setToken({
-        access_token:null,
-        token_type:null,
-        scope: null
-      }));
-      localStorage.removeItem("tokenConfig");
-      dispatch(setLikedPhotosId([],1));
+      dispatch(logOutUser());
       setRedirect(true);
   }
   const handleLogIn = () => {

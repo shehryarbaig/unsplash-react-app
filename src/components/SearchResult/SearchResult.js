@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import VisibilitySensor from "react-visibility-sensor";
 import { Grid } from '@material-ui/core';
@@ -14,20 +14,19 @@ import { useQuery } from '../../utils';
 
 const SearchResult = props => {
     const classes = useSearchResultStyle();
-    const dispatch = useDispatch();
     const location = useLocation();
-    const {queryImages, query} = props;
+    const {queryImages, query, setQuery, getNewQueryImages, getQueryImages} = props;
     const queryParam = useQuery(location); 
 
     useEffect(() => {
-        dispatch(setQuery(capitalizeFirstLetter(queryParam.get("query"))));
-        dispatch(getNewQueryImages(queryParam.get("query")));
+        setQuery(capitalizeFirstLetter(queryParam.get("query")));
+        getNewQueryImages(queryParam.get("query"));
     }, [location]);
 
     function onChange(isVisible) {
         if(isVisible)
         {
-            dispatch(getQueryImages(query, (Object.keys(queryImages).length / 10) + 1));
+            getQueryImages(query, (Object.keys(queryImages).length / 10) + 1);
         }
     }
 
@@ -59,5 +58,13 @@ const mapStateToProps = function (state) {
        query: querySelector(state)
     }
   } 
+
+  const mapDispatchToProps = (dispatch) => {
+    return {
+        getNewQueryImages: (searchQuery) => dispatch(getNewQueryImages(searchQuery)),
+        getQueryImages: (searchQuery, pageNumber) => dispatch(getQueryImages(searchQuery, pageNumber)),
+        setQuery: (searchQuery) => dispatch(setQuery(searchQuery)),
+    }
+  }
   
-export default connect(mapStateToProps)(SearchResult);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResult);
