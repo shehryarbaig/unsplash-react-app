@@ -1,4 +1,4 @@
-import { SET_LIKED_PHOTOS_ID, GET_LIKED_PHOTOS_ID, SET_LIKED_IMAGES, SET_NEW_LIKED_IMAGES, GET_LIKED_IMAGES, GET_NEW_LIKED_IMAGES } from "./type";
+import { SET_LIKED_PHOTOS_ID, GET_LIKED_PHOTOS_ID, SET_LIKED_IMAGES, SET_NEW_LIKED_IMAGES, GET_LIKED_IMAGES, GET_NEW_LIKED_IMAGES, LIKE_BUTTON_CLICK } from "./type";
 
 export const setLikedPhotosId = (likedPhotosData, page) => {
     return {
@@ -63,6 +63,20 @@ export const getNewLikedImages = (likesUrl, accessToken,tokenType) => {
             accessToken,
             tokenType,
             
+        }
+    }
+}
+
+export const likeButtonClick = (imageId,isLiked,likesUrl, totalLikes,accessToken,tokenType) => {
+    return {
+        type: LIKE_BUTTON_CLICK,
+        payload:{
+            imageId,
+            isLiked,
+            likesUrl,
+            totalLikes,
+            accessToken,
+            tokenType,
         }
     }
 }

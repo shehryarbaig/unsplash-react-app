@@ -33,5 +33,6 @@ const photoLikes = (state = INITIAL_STATE, action) => {
 }
 
 export const likedImagesSelector = (state) => state.photoLikes.likedImages;
+export const likedPhotosIdSelector = (state) => state.photoLikes.likedPhotosId;
 
 export default photoLikes;

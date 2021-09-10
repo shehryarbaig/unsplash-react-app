@@ -2,10 +2,10 @@ import { call, put } from "@redux-saga/core/effects";
 import { normalize } from "normalizr";
 import { setQueryImages, setTopicsData, setNewQueryImages, setLikedPhotosId } from "../../actions";
 import { setTopicImages, setNewTopicImages } from "../../actions/topicsImagesSetter";
-import { requestGetTopicImages, requestGetTopics, requestGetQueryImages, requestGetUserProfile, requestGetLikedPhotos, requestGetHomePageImages } from "../requests/unsplashApi";
+import { requestGetTopicImages, requestGetTopics, requestGetQueryImages, requestGetUserProfile, requestGetLikedPhotos, requestGetHomePageImages, requestLikeButtonClick } from "../requests/unsplashApi";
 import { imagesSchema } from "../../imagesSchema";
 import { setUserProfile } from "../../actions/profile";
-import { setLikedImages, setNewLikedImages } from "../../actions/photoLikes";
+import { getLikedPhotosId, setLikedImages, setNewLikedImages } from "../../actions/photoLikes";
 import { setHomePageImages, setNewHomePageImages } from "../../actions/homePageImages";
 
 export function* handleGetTopics(action){
@@ -139,6 +139,18 @@ export function* handleGetLikedImages(action){
         const {data} = response;
         const normalizedData = normalize(data, [imagesSchema]);
         yield put(setLikedImages(normalizedData.entities));
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+}
+
+export function* handleLikeButtonClick(action){
+    try
+    {
+        const response = yield call(requestLikeButtonClick,action.payload.imageId, action.payload.isLiked, action.payload.accessToken, action.payload.tokenType)
+        yield put(getLikedPhotosId(action.payload.likesUrl,action.payload.totalLikes, action.payload.accessToken, action.payload.tokenType));
     }
     catch(error)
     {

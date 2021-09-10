@@ -49,3 +49,13 @@ export function requestGetLikedPhotos(url,accessToken, tokenType, pageNumber) {
         url: `${url}?page=${pageNumber}`
       })
 }
+
+export function requestLikeButtonClick(imageId,isLiked,accessToken, tokenType) {
+    return axios.request({
+        method: isLiked ? 'delete' : 'post',
+        headers: {
+          Authorization: `${tokenType} ${accessToken}`
+        },
+        url: `https://api.unsplash.com/photos/${imageId}/like`
+      })
+}

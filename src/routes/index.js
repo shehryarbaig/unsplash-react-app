@@ -14,7 +14,6 @@ import { getUserProfile } from '../actions/profile';
 
 
 const Routes = props => {
-    const [mounted, setMounted] = useState(false)
 
     const dispatch = useDispatch();
 
@@ -23,13 +22,9 @@ const Routes = props => {
     const profile = useSelector(state=> state.profile);
     const {userProfile} = profile;
 
-    if (!mounted) {
-        dispatch(getTopicsData());
-    }
-
 
     useEffect(() => {
-        setMounted(true);
+        dispatch(getTopicsData());
     }, []);
 
     useEffect(() => {

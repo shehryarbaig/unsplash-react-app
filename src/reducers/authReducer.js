@@ -1,4 +1,5 @@
 import { SET_TOKEN } from "../actions/type";
+import { createSelector } from "reselect";
 
 const INITIAL_STATE = {
   accessToken: null,
@@ -20,5 +21,14 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return state;
   }
 };
+
+export const accessTokenSelector = createSelector(
+  [state => state.authReducer.accessToken],
+  (accessToken) => accessToken
+);
+export const tokenTypeSelector = createSelector(
+  [state => state.authReducer.token_type],
+  (tokenType) => tokenType
+);
 
 export default authReducer;

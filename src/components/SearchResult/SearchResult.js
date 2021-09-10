@@ -19,10 +19,6 @@ const SearchResult = props => {
     const {queryImages, query} = props;
     const queryParam = useQuery(location); 
 
-    function fetchMoreImages() {
-        dispatch(getQueryImages(query, (Object.keys(queryImages).length / 10) + 1));
-    }
-
     useEffect(() => {
         dispatch(setQuery(capitalizeFirstLetter(queryParam.get("query"))));
         dispatch(getNewQueryImages(queryParam.get("query")));
@@ -31,7 +27,7 @@ const SearchResult = props => {
     function onChange(isVisible) {
         if(isVisible)
         {
-            fetchMoreImages();
+            dispatch(getQueryImages(query, (Object.keys(queryImages).length / 10) + 1));
         }
     }
 

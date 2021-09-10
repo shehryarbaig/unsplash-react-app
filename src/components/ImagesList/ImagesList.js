@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { connect, useSelector, useDispatch  } from 'react-redux';
+import { connect } from 'react-redux';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
@@ -10,23 +10,18 @@ import axios from "axios";
 import ThumbUpAltRoundedIcon from '@material-ui/icons/ThumbUpAltRounded';
 import { getLikedPhotosId } from '../../actions';
 import { useImageListStyle } from './ImagesList.style';
-import { topicImagesSelector } from '../../selectors';
+import { topicImagesSelector, userProfileSelector } from '../../selectors';
 import { queryImagesSelector } from '../../selectors';
 import { likedImagesSelector } from '../../selectors';
 import { homePageImagesSelector } from '../../selectors';
+import { likedPhotosIdSelector } from '../../reducers/photoLikes';
+import { accessTokenSelector, tokenTypeSelector } from '../../reducers/authReducer';
+import { likeButtonClick } from '../../actions/photoLikes';
 
 
 const ImagesList = props => {
   const classes = useImageListStyle();
-  const { images } = props;
-  const myState = useSelector((state) => state.authReducer);
-  const dispatch = useDispatch();
-
-  const photoLikes = useSelector(state => state.photoLikes);
-    const { likedPhotosId } = photoLikes;
-
-    const profile = useSelector(state=> state.profile);
-    const {userProfile} = profile;
+  const { images, getLikedPhotosId,likeButtonClick, userProfile, likedPhotosId, accessToken, tokenType } = props;
 
   const downloadImage = (url, fileName) => {
     axios({
@@ -47,22 +42,14 @@ const ImagesList = props => {
 
 
   useEffect(() => {
-    if (myState.accessToken != null) {
-      Object.keys(userProfile).length!==0 && dispatch(getLikedPhotosId(userProfile.links.likes,userProfile.total_likes,myState.accessToken, myState.token_type))
+    if (accessToken != null) {
+      Object.keys(userProfile).length!==0 && getLikedPhotosId(userProfile.links.likes,userProfile.total_likes,accessToken, tokenType)
     }
   }, [])
 
   const handleLikeButtonClick = (event, item) => {
-    if (myState.accessToken != null) {
-      axios.request({
-        method: likedPhotosId.includes(item.id) ? 'delete' : 'post',
-        headers: {
-          Authorization: `${myState.token_type} ${myState.accessToken}`
-        },
-        url: `https://api.unsplash.com/photos/${item.id}/like`
-      }).then(response=> {
-        Object.keys(userProfile).length!==0 && dispatch(getLikedPhotosId(userProfile.links.likes,userProfile.total_likes,myState.accessToken, myState.token_type))
-      });
+    if (accessToken != null && Object.keys(userProfile).length!==0) {
+     likeButtonClick(item.id,likedPhotosId.includes(item.id),userProfile.links.likes,userProfile.total_likes,accessToken,tokenType)
     }
     
     
@@ -115,32 +102,46 @@ const ImagesList = props => {
 
 };
 
-const mapStateToProps = function (state, ownProps) {
-  const {imageType} = ownProps;
+const imageSelector =  (state, imageType) => {
   if(imageType === "Topic")
   {
-      return {
-        images: topicImagesSelector(state)
-      }
+      return topicImagesSelector(state)
+      
   }
   else if(imageType === "Query")
   {
-    return {
-        images: queryImagesSelector(state)
-    }
+    return queryImagesSelector(state)
+    
   }
   else if(imageType === "Profile")
   {
-    return {
-      images: likedImagesSelector(state)
-    }
+    return likedImagesSelector(state)
+    
   }
   else if(imageType === "Home Page")
   {
-    return {
-      images: homePageImagesSelector(state)
-    }
+    return homePageImagesSelector(state)
+    
   }
+}
+
+const mapStateToProps = function (state, ownProps) {
+  const {imageType} = ownProps;
+  return {
+    images: imageSelector(state, imageType),
+    userProfile: userProfileSelector(state),
+    likedPhotosId: likedPhotosIdSelector(state),
+    accessToken: accessTokenSelector(state),
+    tokenType: tokenTypeSelector(state)
+  }
+  
 } 
 
-export default connect(mapStateToProps)(ImagesList);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getLikedPhotosId: (likesUrl, totalLikes, accessToken, tokenType) => dispatch(getLikedPhotosId(likesUrl, totalLikes, accessToken, tokenType)),
+    likeButtonClick: (imageId, isLiked, likesUrl,totalLikes,accessToken,tokenType) => dispatch(likeButtonClick(imageId, isLiked, likesUrl,totalLikes,accessToken,tokenType)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImagesList);
