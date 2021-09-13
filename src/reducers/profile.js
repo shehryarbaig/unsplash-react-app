@@ -1,3 +1,4 @@
+import { createSelector } from "reselect";
 import { SET_MY_PROFILE } from "../actions/type";
 
 
@@ -15,8 +16,11 @@ const profile = (state = INITIAL_STATE, action) => {
     }
 }
 
-export const userLikesUrlSelector = (state) => state.profile.userProfile? state.profile.userProfile.links.likes:null;
-export const userTotalLikesSelector = (state) => state.profile.userProfile? state.profile.userProfile.total_likes:null;
-export const userProfileSelector = (state) => state.profile.userProfile;
+//export const userLikesUrlSelector = (state) => state.profile.userProfile? state.profile.userProfile.links.likes:null;
+//export const userTotalLikesSelector = (state) => state.profile.userProfile? state.profile.userProfile.total_likes:null;
+export const userProfileSelector = createSelector(
+    [(state) => state.profile.userProfile],
+    (userProfile) => userProfile
+) 
 
 export default profile;

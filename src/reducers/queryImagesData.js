@@ -1,3 +1,4 @@
+import { createSelector } from "reselect";
 import { SET_QUERY_IMAGES, SET_NEW_QUERY_IMAGES, SET_QUERY } from "../actions/type";
 
 const INITIAL_STATE = {
@@ -23,7 +24,15 @@ const queryImagesData = (state = INITIAL_STATE, action) => {
     }
 }
 
-export const queryImagesSelector = (state) => state.queryImagesData.queryImages;
-export const querySelector = (state) => state.queryImagesData.query;
+export const queryImagesSelector = createSelector(
+    [(state) => state.queryImagesData.queryImages],
+    (queryImages) => queryImages
+
+)
+
+export const querySelector = createSelector(
+    [(state) => state.queryImagesData.query],
+    (query) => query
+) 
 
 export default queryImagesData;

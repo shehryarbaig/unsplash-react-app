@@ -5,8 +5,8 @@ import { Typography } from '@material-ui/core';
 import { getTopicImages, getNewTopicImages } from '../../actions/topicsImagesSetter';
 import { changeActiveTab } from '../../actions';
 import { useCategoryPageStyle } from './CategoryPage.style';
-import { topicImagesSelector } from '../../selectors';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
+import { topicImagesSelector } from '../../reducers/topicImagesSetter';
 const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));
 
 const CategoryPage = props => {

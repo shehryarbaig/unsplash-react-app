@@ -1,3 +1,4 @@
+import { createSelector } from "reselect";
 import { SET_TOPICS_DATA, SET_TOPIC_DATA } from "../actions/type";
 
 const INITIAL_STATE = {
@@ -19,6 +20,10 @@ const topicsDataSetter = (state = INITIAL_STATE, action) => {
     }
 }
 
-export const topicsDataSelector = (state) => state.topicsDataSetter.topicsData;
+export const topicsDataSelector = createSelector(
+    [(state) => state.topicsDataSetter.topicsData],
+    (topicsData) => topicsData
+
+) 
 
 export default topicsDataSetter;

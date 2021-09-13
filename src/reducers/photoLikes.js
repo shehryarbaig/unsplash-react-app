@@ -1,3 +1,4 @@
+import { createSelector } from "reselect";
 import { SET_LIKED_PHOTOS_ID, SET_LIKED_IMAGES, SET_NEW_LIKED_IMAGES } from "../actions/type";
 
 const INITIAL_STATE = {
@@ -32,7 +33,13 @@ const photoLikes = (state = INITIAL_STATE, action) => {
     }
 }
 
-export const likedImagesSelector = (state) => state.photoLikes.likedImages;
-export const likedPhotosIdSelector = (state) => state.photoLikes.likedPhotosId;
+export const likedImagesSelector = createSelector(
+    [state => state.photoLikes.likedImages],
+    (likedImages) => likedImages
+) 
+export const likedPhotosIdSelector = createSelector(
+    [(state) => state.photoLikes.likedPhotosId,],
+    (likedPhotosId) => likedPhotosId
+) 
 
 export default photoLikes;

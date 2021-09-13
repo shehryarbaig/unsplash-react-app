@@ -3,10 +3,10 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 import { Grid } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { getLikedImages, getNewLikedImages } from '../../actions/photoLikes';
-import { likedImagesSelector } from '../../selectors';
-import { userProfileSelector } from '../../selectors';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import { useProfilePageStyle } from './ProfilePage.style';
+import { likedImagesSelector } from '../../reducers/photoLikes';
+import { userProfileSelector } from '../../reducers/profile';
 const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));
 
 

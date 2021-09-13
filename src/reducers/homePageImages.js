@@ -1,3 +1,4 @@
+import { createSelector } from "reselect";
 import { SET_HOME_PAGE_IMAGES, SET_NEW_HOME_PAGE_IMAGES } from "../actions/type";
 
 const INITIAL_STATE = {
@@ -18,6 +19,9 @@ const homePageImages = (state = INITIAL_STATE, action) => {
     }
 }
 
-export const homePageImagesSelector = (state) => state.homePageImages.homePageImages;
+export const homePageImagesSelector = createSelector(
+  [(state) => state.homePageImages.homePageImages],
+  (homePageImages) => homePageImages
+)
 
 export default homePageImages;

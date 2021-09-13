@@ -6,10 +6,10 @@ import { Typography } from '@material-ui/core';
 import ImagesList from '../ImagesList';
 import { setQuery, getNewQueryImages, getQueryImages } from '../../actions';
 import { capitalizeFirstLetter } from '../../utils';
-import { queryImagesSelector, querySelector } from '../../selectors';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import { useQuery } from '../../utils';
 import { useSearchResultStyle } from './SearchResult.style';
+import { queryImagesSelector, querySelector } from '../../reducers/queryImagesData';
 
 const SearchResult = props => {
     const classes = useSearchResultStyle();

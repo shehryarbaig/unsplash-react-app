@@ -1,3 +1,4 @@
+import { createSelector } from "reselect";
 import { SET_TOPIC_IMAGES, SET_NEW_TOPIC_IMAGES } from "../actions/type";
 
 const INITIAL_STATE = {
@@ -18,6 +19,10 @@ const topicsImagesSetter = (state = INITIAL_STATE, action) => {
     }
 }
 
-export const topicImagesSelector = (state) => state.topicsImagesSetter.topicImages;
+export const topicImagesSelector = createSelector(
+  [(state) => state.topicsImagesSetter.topicImages],
+  (topicImages) => topicImages
+
+) 
 
 export default topicsImagesSetter;
