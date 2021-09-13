@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { Typography } from '@material-ui/core';
 import SearchBar from '../../components/SearchBar';
 import { changeActiveTab } from '../../actions';
@@ -11,17 +11,16 @@ const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesLi
 
 const HomePage = props => {
     const classes = useHomePageStyle();
-    const dispatch = useDispatch();
-    const {homePageImages} = props;
+    const {homePageImages, getHomePageImages, getNewHomePageImages} = props;
 
     function fetchMoreImages() {
 
-        homePageImages &&  dispatch(getHomePageImages((Object.keys(homePageImages).length / 10) + 1)) ;
+        homePageImages &&  getHomePageImages((Object.keys(homePageImages).length / 10) + 1) ;
     }
 
     useEffect(() => {
-        dispatch(changeActiveTab(0));
-        dispatch(getNewHomePageImages());
+        changeActiveTab(0);
+        getNewHomePageImages();
     }, []);
 
     return (
@@ -97,5 +96,14 @@ const mapStateToProps = function (state) {
        homePageImages: homePageImagesSelector(state)
     }
   } 
+
+  const mapDispatchToProps = (dispatch) => {
+    return {
+        getNewHomePageImages: () => dispatch(getNewHomePageImages()),
+        getHomePageImages: (pageNumber) => dispatch(getHomePageImages(pageNumber)),
+        changeActiveTab: (number) => dispatch(changeActiveTab(number)),
+      
+    }
+  }
   
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

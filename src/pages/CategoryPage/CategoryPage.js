@@ -1,29 +1,28 @@
 import React, { Suspense, useEffect } from 'react';
-import { useDispatch, connect } from "react-redux";
+import { connect } from "react-redux";
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
 import { getTopicImages, getNewTopicImages } from '../../actions/topicsImagesSetter';
 import { changeActiveTab } from '../../actions';
-import { useCategoryPageStyle } from './CategoryPage.style';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import { topicImagesSelector } from '../../reducers/topicImagesSetter';
+import { useCategoryPageStyle } from './CategoryPage.style';
 const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));
 
 const CategoryPage = props => {
-    const { topic, topicIndex } = props;
+    const { topic, topicIndex, getNewTopicImages, getTopicImages, changeActiveTab } = props;
     const { topicImages } = props;
     const classes = useCategoryPageStyle();
-    const dispatch = useDispatch();
 
 
     function fetchMoreImages() {
 
-        topicImages && dispatch(getTopicImages(topic.slug, (Object.keys(topicImages).length / 10) + 1));
+        topicImages && getTopicImages(topic.slug, (Object.keys(topicImages).length / 10) + 1);
     }
 
     useEffect(() => {
-        dispatch(changeActiveTab(topicIndex + 1));
-        dispatch(getNewTopicImages(topic.slug));
+        changeActiveTab(topicIndex + 1);
+        getNewTopicImages(topic.slug);
     }, []);
 
     return (
@@ -60,4 +59,13 @@ const mapStateToProps = function (state) {
     }
 }
 
-export default connect(mapStateToProps)(CategoryPage);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getNewTopicImages: (topic) => dispatch(getNewTopicImages(topic)),
+        getTopicImages: (topic, pageNumber) => dispatch(getTopicImages(topic, pageNumber)),
+        changeActiveTab: (number) => dispatch(changeActiveTab(number)),
+      
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryPage);

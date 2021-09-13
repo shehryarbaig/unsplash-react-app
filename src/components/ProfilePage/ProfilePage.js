@@ -1,12 +1,13 @@
 import React, { Suspense, useEffect } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { Grid } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { getLikedImages, getNewLikedImages } from '../../actions/photoLikes';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
-import { useProfilePageStyle } from './ProfilePage.style';
 import { likedImagesSelector } from '../../reducers/photoLikes';
 import { userProfileSelector } from '../../reducers/profile';
+import { accessTokenSelector, tokenTypeSelector } from '../../reducers/authReducer';
+import { useProfilePageStyle } from './ProfilePage.style';
 const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));
 
 
@@ -14,21 +15,15 @@ const ProfilePage = props => {
 
     const classes = useProfilePageStyle();
 
-    const dispatch = useDispatch();
-
-    const { userProfile } = props;
-
-    const { likedImages } = props;
-
-    const myState = useSelector((state) => state.authReducer);
+    const { userProfile, likedImages, accessToken, tokenType, getLikedImages, getNewLikedImages } = props;
 
     function fetchMoreImages() {
 
-        likedImages && Object.keys(userProfile).length !== 0 && dispatch(getLikedImages(userProfile.links.likes, (Object.keys(likedImages).length / 10) + 1, myState.accessToken, myState.token_type));
+        likedImages && Object.keys(userProfile).length !== 0 && getLikedImages(userProfile.links.likes, (Object.keys(likedImages).length / 10) + 1, accessToken, tokenType);
     }
 
     useEffect(() => {
-        Object.keys(userProfile).length !== 0 && dispatch(getNewLikedImages(userProfile.links.likes, myState.accessToken, myState.token_type));
+        Object.keys(userProfile).length !== 0 && getNewLikedImages(userProfile.links.likes, accessToken, tokenType);
     }, []);
 
     function onChange(isVisible) {
@@ -63,8 +58,18 @@ const ProfilePage = props => {
 const mapStateToProps = function (state) {
     return {
         likedImages: likedImagesSelector(state),
-        userProfile: userProfileSelector(state)
+        userProfile: userProfileSelector(state),
+        accessToken: accessTokenSelector(state),
+        tokenType: tokenTypeSelector(state),
     }
 }
 
-export default connect(mapStateToProps)(ProfilePage);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getNewLikedImages: (likesUrl, accessToken, tokenType) => dispatch(getNewLikedImages(likesUrl, accessToken, tokenType)),
+        getLikedImages: (likesUrl, pageNumber, accessToken, tokenType) => dispatch(getLikedImages(likesUrl, pageNumber, accessToken, tokenType)),
+      
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
