@@ -9,14 +9,14 @@ import GetAppRoundedIcon from '@material-ui/icons/GetAppRounded';
 import axios from "axios";
 import ThumbUpAltRoundedIcon from '@material-ui/icons/ThumbUpAltRounded';
 import { getLikedPhotosId } from '../../actions';
-import { likedImagesSelector, likedPhotosIdSelector } from '../../reducers/photoLikes';
+import { likedImagesSelector, likedPhotosIdSelector } from '../../reducers/photoLikesReducer';
 import { accessTokenSelector, tokenTypeSelector } from '../../reducers/authReducer';
-import { likeButtonClick } from '../../actions/photoLikes';
-import {userProfileSelector} from "../../reducers/profile"
+import { likeButtonClick } from '../../actions/photoLikesActions';
+import {userProfileSelector} from "../../reducers/profileActions"
 import { getImage } from '../../actions/imageActions';
-import { topicImagesSelector } from '../../reducers/topicImagesSetter';
-import { queryImagesSelector } from '../../reducers/queryImagesData';
-import { homePageImagesSelector } from '../../reducers/homePageImages';
+import { topicImagesSelector } from '../../reducers/topicImagesSetterReducer';
+import { queryImagesSelector } from '../../reducers/queryImagesDataReducer';
+import { homePageImagesSelector } from '../../reducers/homePageImagesReducer';
 import { useImageListStyle } from './ImagesList.style';
 
 

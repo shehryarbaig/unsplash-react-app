@@ -5,12 +5,12 @@ import HomePage from '../pages/HomePage';
 import PublicRoute from './PublicRoute';
 import CategoryPage from '../pages/CategoryPage';
 import { setToken } from '../actions';
-import { getTopicsData } from '../actions/topicsDataSetter';
+import { getTopicsData } from '../actions/topicsDataSetterActions';
 import SearchResult from '../components/SearchResult';
 import { getToken } from '../actions';
 import PrivateRoute from './PrivateRoute';
 import ProfilePage from '../components/ProfilePage';
-import { getUserProfile } from '../actions/profile';
+import { getUserProfile } from '../actions/profileActions';
 
 
 const Routes = props => {

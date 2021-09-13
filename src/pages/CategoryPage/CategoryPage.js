@@ -2,10 +2,10 @@ import React, { Suspense, useEffect } from 'react';
 import { connect } from "react-redux";
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
-import { getTopicImages, getNewTopicImages } from '../../actions/topicsImagesSetter';
+import { getTopicImages, getNewTopicImages } from '../../actions/topicsImagesSetterActions';
 import { changeActiveTab } from '../../actions';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
-import { topicImagesSelector } from '../../reducers/topicImagesSetter';
+import { topicImagesSelector } from '../../reducers/topicImagesSetterReducer';
 import { useCategoryPageStyle } from './CategoryPage.style';
 const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));
 
