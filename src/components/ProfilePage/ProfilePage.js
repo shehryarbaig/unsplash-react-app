@@ -1,13 +1,12 @@
-import React , { Suspense, useEffect }from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { connect, useDispatch, useSelector } from 'react-redux';
-import VisibilitySensor from "react-visibility-sensor";
 import { Grid } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
-import { CircularProgress } from '@material-ui/core';
 import { getLikedImages, getNewLikedImages } from '../../actions/photoLikes';
-import { useProfilePageStyle } from './ProfilePage.style';
 import { likedImagesSelector } from '../../selectors';
 import { userProfileSelector } from '../../selectors';
+import ProgressBar from '../../components/ProgressBar/ProgressBar';
+import { useProfilePageStyle } from './ProfilePage.style';
 const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));
 
 
@@ -17,24 +16,23 @@ const ProfilePage = props => {
 
     const dispatch = useDispatch();
 
-    const {userProfile} = props;
-    
-    const {likedImages} = props;
+    const { userProfile } = props;
+
+    const { likedImages } = props;
 
     const myState = useSelector((state) => state.authReducer);
 
     function fetchMoreImages() {
 
-        likedImages && Object.keys(userProfile).length!==0 &&  dispatch(getLikedImages(userProfile.links.likes, (Object.keys(likedImages).length / 10) + 1,myState.accessToken, myState.token_type)) ;
+        likedImages && Object.keys(userProfile).length !== 0 && dispatch(getLikedImages(userProfile.links.likes, (Object.keys(likedImages).length / 10) + 1, myState.accessToken, myState.token_type));
     }
 
     useEffect(() => {
-         Object.keys(userProfile).length!==0 && dispatch(getNewLikedImages(userProfile.links.likes, myState.accessToken, myState.token_type));
+        Object.keys(userProfile).length !== 0 && dispatch(getNewLikedImages(userProfile.links.likes, myState.accessToken, myState.token_type));
     }, []);
 
     function onChange(isVisible) {
-        if(isVisible)
-        {
+        if (isVisible) {
             fetchMoreImages();
         }
     }
@@ -50,15 +48,13 @@ const ProfilePage = props => {
 
                 <Grid className={classes.imagesGrid} item sm={12}  >
                     <Suspense fallback={<div>Loading</div>}>
-                    <ImagesList imageType="Profile" />
+                        <ImagesList imageType="Profile" />
 
                     </Suspense>
                 </Grid>
-                <VisibilitySensor onChange={onChange}>
-                    <Grid item className={classes.circularIcon} xs={12} >
-                    <CircularProgress />
-                    </Grid>
-                </VisibilitySensor>
+                <Grid item className={classes.circularIcon} xs={12} >
+                <ProgressBar fetchMoreImages= {fetchMoreImages}/>
+                </Grid>
             </Grid>
         </div>
     );
@@ -66,9 +62,9 @@ const ProfilePage = props => {
 
 const mapStateToProps = function (state) {
     return {
-       likedImages: likedImagesSelector(state),
-       userProfile: userProfileSelector(state)
+        likedImages: likedImagesSelector(state),
+        userProfile: userProfileSelector(state)
     }
-  } 
-  
+}
+
 export default connect(mapStateToProps)(ProfilePage);

@@ -1,13 +1,12 @@
 import React, { Suspense, useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
-import VisibilitySensor from "react-visibility-sensor";
 import { Typography } from '@material-ui/core';
-import { CircularProgress } from '@material-ui/core';
 import SearchBar from '../../components/SearchBar';
 import { changeActiveTab } from '../../actions';
 import { getHomePageImages, getNewHomePageImages } from '../../actions/homePageImages';
-import { useHomePageStyle } from "./HomePage.style";
 import { homePageImagesSelector } from '../../reducers/homePageImages';
+import ProgressBar from '../../components/ProgressBar/ProgressBar';
+import { useHomePageStyle } from "./HomePage.style";
 const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));
 
 const HomePage = props => {
@@ -24,13 +23,6 @@ const HomePage = props => {
         dispatch(changeActiveTab(0));
         dispatch(getNewHomePageImages());
     }, []);
-
-    function onChange(isVisible) {
-        if(isVisible)
-        {
-            fetchMoreImages();
-        }
-    }
 
     return (
         <>
@@ -94,9 +86,7 @@ const HomePage = props => {
         </Suspense>
         </div>
         <div className={classes.progressBar}>
-        <VisibilitySensor onChange={onChange}>
-            <CircularProgress />
-        </VisibilitySensor>
+        <ProgressBar fetchMoreImages= {fetchMoreImages}/>
         </div>
         </>
     );
