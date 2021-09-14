@@ -11,7 +11,7 @@ const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesLi
 
 const HomePage = props => {
     const classes = useHomePageStyle();
-    const {homePageImages, getHomePageImages, getNewHomePageImages} = props;
+    const {homePageImages, getHomePageImages, getNewHomePageImages, changeActiveTab} = props;
 
     function fetchMoreImages() {
 
