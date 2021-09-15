@@ -28,6 +28,6 @@ jobs:
 
       - run: npm run build
 
-      - run: npm netlify:deploy
+      - run: npm run netlify:deploy
 
 
