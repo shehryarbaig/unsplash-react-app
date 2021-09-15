@@ -6,7 +6,6 @@ import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import GetAppRoundedIcon from '@material-ui/icons/GetAppRounded';
-import axios from "axios";
 import ThumbUpAltRoundedIcon from '@material-ui/icons/ThumbUpAltRounded';
 import { getLikedPhotosId } from '../../actions';
 import { likedImagesSelector, likedPhotosIdSelector } from '../../reducers/photoLikesReducer';
@@ -33,6 +32,7 @@ const ImagesList = props => {
     if (accessToken != null) {
       Object.keys(userProfile).length!==0 && getLikedPhotosId(userProfile.links.likes,userProfile.total_likes,accessToken, tokenType)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleLikeButtonClick = (event, item) => {

@@ -150,7 +150,7 @@ export function* handleGetLikedImages(action){
 export function* handleLikeButtonClick(action){
     try
     {
-        const response = yield call(requestLikeButtonClick,action.payload.imageId, action.payload.isLiked, action.payload.accessToken, action.payload.tokenType)
+        yield call(requestLikeButtonClick,action.payload.imageId, action.payload.isLiked, action.payload.accessToken, action.payload.tokenType)
         yield put(getLikedPhotosId(action.payload.likesUrl,action.payload.totalLikes, action.payload.accessToken, action.payload.tokenType));
     }
     catch(error)

@@ -20,6 +20,7 @@ const SearchResult = props => {
     useEffect(() => {
         setQuery(capitalizeFirstLetter(queryParam.get("query")));
         getNewQueryImages(queryParam.get("query"));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location]);
 
     function fetchMoreImages() {

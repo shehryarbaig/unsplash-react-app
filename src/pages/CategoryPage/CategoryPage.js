@@ -23,6 +23,7 @@ const CategoryPage = props => {
     useEffect(() => {
         changeActiveTab(topicIndex + 1);
         getNewTopicImages(topic.slug);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

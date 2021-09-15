@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
@@ -25,6 +25,7 @@ const Routes = props => {
 
     useEffect(() => {
         dispatch(getTopicsData());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -34,6 +35,7 @@ const Routes = props => {
           
           window.history.pushState("", "", "/");
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
 
     useEffect(()=>{
@@ -41,6 +43,7 @@ const Routes = props => {
         {
             dispatch(getUserProfile(myState.accessToken, myState.token_type));
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[myState.accessToken])
 
     useEffect(()=>{
@@ -57,6 +60,7 @@ const Routes = props => {
             dispatch(setToken(token));
 
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[myState.accessToken])
 
     const topicsDataSetter = useSelector(state => state.topicsDataSetter);

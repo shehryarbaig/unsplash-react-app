@@ -6,7 +6,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { IconButton } from '@material-ui/core';
-import { setLikedPhotosId, setToken } from '../../actions';
 import SearchBar from '../SearchBar';
 import { loginUrl } from '../../app/unsplash';
 import { useNavBarStyles } from "./NavBar.style"

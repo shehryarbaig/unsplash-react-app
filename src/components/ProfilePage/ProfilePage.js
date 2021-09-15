@@ -24,13 +24,8 @@ const ProfilePage = props => {
 
     useEffect(() => {
         Object.keys(userProfile).length !== 0 && getNewLikedImages(userProfile.links.likes, accessToken, tokenType);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    function onChange(isVisible) {
-        if (isVisible) {
-            fetchMoreImages();
-        }
-    }
 
     return (
         <div className={classes.root}>
