@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
-import HomePage from '../pages/HomePage';
+import HomePage from '../components/HomePage';
 import PublicRoute from './PublicRoute';
-import CategoryPage from '../pages/CategoryPage';
+import CategoryPage from '../components/CategoryPage';
 import { setToken } from '../actions';
 import { getTopicsData } from '../actions/topicsDataSetterActions';
 import SearchResult from '../components/SearchResult';
