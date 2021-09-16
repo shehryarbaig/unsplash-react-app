@@ -1,13 +1,13 @@
 import React, { Suspense, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Typography } from '@material-ui/core';
-import SearchBar from '../../components/SearchBar';
+import SearchBar from '../SearchBar';
 import { changeActiveTab } from '../../actions';
 import { getHomePageImages, getNewHomePageImages } from '../../actions/homePageImagesActions';
 import { homePageImagesSelector } from '../../reducers/homePageImagesReducer';
-import ProgressBar from '../../components/ProgressBar/ProgressBar';
+import ProgressBar from '../ProgressBar/ProgressBar';
 import { useHomePageStyle } from "./HomePage.style";
-const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));
+const ImagesList = React.lazy(() => import("../ImagesList/ImagesList.js"));
 
 const HomePage = props => {
     const classes = useHomePageStyle();

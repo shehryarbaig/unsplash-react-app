@@ -4,10 +4,10 @@ import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
 import { getTopicImages, getNewTopicImages } from '../../actions/topicsImagesSetterActions';
 import { changeActiveTab } from '../../actions';
-import ProgressBar from '../../components/ProgressBar/ProgressBar';
+import ProgressBar from '../ProgressBar/ProgressBar';
 import { topicImagesSelector } from '../../reducers/topicImagesSetterReducer';
 import { useCategoryPageStyle } from './CategoryPage.style';
-const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));
+const ImagesList = React.lazy(() => import("../ImagesList/ImagesList.js"));
 
 const CategoryPage = props => {
     const { topic, topicIndex, getNewTopicImages, getTopicImages, changeActiveTab } = props;
