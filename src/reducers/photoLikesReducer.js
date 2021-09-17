@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { SET_LIKED_PHOTOS_ID, SET_LIKED_IMAGES, SET_NEW_LIKED_IMAGES } from "../actions/type";
+import { SET_LIKED_PHOTOS_ID, SET_LIKED_IMAGES, SET_NEW_LIKED_IMAGES } from "../actions/types";
 
 const INITIAL_STATE = {
     likedPhotosId: [],

@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { SET_TOPICS_DATA, SET_TOPIC_DATA } from "../actions/type";
+import { SET_TOPICS_DATA, SET_TOPIC_DATA } from "../actions/types";
 
 const INITIAL_STATE = {
     topicsData: [],

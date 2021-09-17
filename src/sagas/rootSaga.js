@@ -1,5 +1,5 @@
 import { takeLatest, all } from "@redux-saga/core/effects";
-import { GET_TOPICS_DATA, GET_NEW_TOPIC_IMAGES, GET_TOPIC_IMAGES, GET_QUERY_IMAGES, GET_NEW_QUERY_IMAGES, GET_TOKEN , GET_LIKED_PHOTOS_ID, GET_MY_PROFILE, GET_NEW_LIKED_IMAGES, GET_LIKED_IMAGES, GET_NEW_HOME_PAGE_IMAGES, GET_HOME_PAGE_IMAGES, LIKE_BUTTON_CLICK, LOG_OUT_USER, GET_IMAGE} from "../actions/type";
+import { GET_TOPICS_DATA, GET_NEW_TOPIC_IMAGES, GET_TOPIC_IMAGES, GET_QUERY_IMAGES, GET_NEW_QUERY_IMAGES, GET_TOKEN , GET_LIKED_PHOTOS_ID, GET_MY_PROFILE, GET_NEW_LIKED_IMAGES, GET_LIKED_IMAGES, GET_NEW_HOME_PAGE_IMAGES, GET_HOME_PAGE_IMAGES, LIKE_BUTTON_CLICK, LOG_OUT_USER, GET_IMAGE} from "../actions/types";
 import { handleGetTopicImages, handleGetNewTopicImages, handleGetTopics, handleGetNewQueryImages, handleGetQueryImages, handleGetLikedPhotosId, handleGetUserProfile, handleGetNewLikedImages, handleGetLikedImages, handleGetNewHomePageImages, handleGetHomePageImages, handleLikeButtonClick, handleGetImage } from "./handlers/unsplashApi";
 import { handleGetToken, handleLogOut } from "./handlers/auth";
 

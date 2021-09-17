@@ -1,4 +1,4 @@
-import { SET_NEW_HOME_PAGE_IMAGES, SET_HOME_PAGE_IMAGES, GET_HOME_PAGE_IMAGES, GET_NEW_HOME_PAGE_IMAGES } from "./type"
+import { SET_NEW_HOME_PAGE_IMAGES, SET_HOME_PAGE_IMAGES, GET_HOME_PAGE_IMAGES, GET_NEW_HOME_PAGE_IMAGES } from "./types"
 
 export const setHomePageImages = (images) => {
     return {

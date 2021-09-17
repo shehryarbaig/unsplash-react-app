@@ -5,7 +5,7 @@ import { Typography } from '@material-ui/core';
 import { getLikedImages, getNewLikedImages } from '../../actions/photoLikesActions';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import { likedImagesSelector } from '../../reducers/photoLikesReducer';
-import { userProfileSelector } from '../../reducers/profileActions';
+import { userProfileSelector } from '../../reducers/profileReducer';
 import { accessTokenSelector, tokenTypeSelector } from '../../reducers/authReducer';
 import { useProfilePageStyle } from './ProfilePage.style';
 const ImagesList = React.lazy(() => import("../../components/ImagesList/ImagesList.js"));

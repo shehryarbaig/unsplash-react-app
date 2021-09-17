@@ -11,7 +11,7 @@ import { getLikedPhotosId } from '../../actions';
 import { likedImagesSelector, likedPhotosIdSelector } from '../../reducers/photoLikesReducer';
 import { accessTokenSelector, tokenTypeSelector } from '../../reducers/authReducer';
 import { likeButtonClick } from '../../actions/photoLikesActions';
-import {userProfileSelector} from "../../reducers/profileActions"
+import {userProfileSelector} from "../../reducers/profileReducer"
 import { getImage } from '../../actions/imageActions';
 import { topicImagesSelector } from '../../reducers/topicImagesSetterReducer';
 import { queryImagesSelector } from '../../reducers/queryImagesDataReducer';

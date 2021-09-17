@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { SET_HOME_PAGE_IMAGES, SET_NEW_HOME_PAGE_IMAGES } from "../actions/type";
+import { SET_HOME_PAGE_IMAGES, SET_NEW_HOME_PAGE_IMAGES } from "../actions/types";
 
 const INITIAL_STATE = {
     homePageImages: {}

@@ -1,4 +1,4 @@
-import { SET_TOPIC_IMAGES, SET_NEW_TOPIC_IMAGES,GET_TOPIC_IMAGES, GET_NEW_TOPIC_IMAGES } from "./type";
+import { SET_TOPIC_IMAGES, SET_NEW_TOPIC_IMAGES,GET_TOPIC_IMAGES, GET_NEW_TOPIC_IMAGES } from "./types";
 
 export const setTopicImages = (topicImages) => {
     return {

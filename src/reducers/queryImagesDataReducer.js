@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { SET_QUERY_IMAGES, SET_NEW_QUERY_IMAGES, SET_QUERY } from "../actions/type";
+import { SET_QUERY_IMAGES, SET_NEW_QUERY_IMAGES, SET_QUERY } from "../actions/types";
 
 const INITIAL_STATE = {
     query: "",

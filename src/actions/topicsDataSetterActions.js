@@ -1,4 +1,4 @@
-import { SET_TOPICS_DATA, GET_TOPICS_DATA ,SET_TOPIC_DATA } from "./type";
+import { SET_TOPICS_DATA, GET_TOPICS_DATA ,SET_TOPIC_DATA } from "./types";
 
 export const setTopicsData = (topicsData) => {
     return {

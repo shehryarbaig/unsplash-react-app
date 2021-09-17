@@ -1,4 +1,4 @@
-import { SET_MY_PROFILE, GET_MY_PROFILE } from "./type"
+import { SET_MY_PROFILE, GET_MY_PROFILE } from "./types"
 
 export const setUserProfile = (profile) => {
     return {

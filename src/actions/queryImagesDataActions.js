@@ -1,4 +1,4 @@
-import { SET_QUERY_IMAGES, SET_NEW_QUERY_IMAGES, GET_QUERY_IMAGES, GET_NEW_QUERY_IMAGES, SET_QUERY } from "./type"
+import { SET_QUERY_IMAGES, SET_NEW_QUERY_IMAGES, GET_QUERY_IMAGES, GET_NEW_QUERY_IMAGES, SET_QUERY } from "./types"
 
 export const setQuery = (query) => {
     return {

@@ -1,4 +1,4 @@
-import { CHANGE_TAB } from "./type";
+import { CHANGE_TAB } from "./types";
 
 export const changeActiveTab = (num) => {
     return {

@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { SET_TOPIC_IMAGES, SET_NEW_TOPIC_IMAGES } from "../actions/type";
+import { SET_TOPIC_IMAGES, SET_NEW_TOPIC_IMAGES } from "../actions/types";
 
 const INITIAL_STATE = {
     topicImages: {}

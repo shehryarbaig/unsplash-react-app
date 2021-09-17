@@ -1,4 +1,4 @@
-import { GET_TOKEN , SET_TOKEN, LOG_OUT_USER} from "./type";
+import { GET_TOKEN , SET_TOKEN, LOG_OUT_USER} from "./types";
 
 export const getToken = payload => {
   return {

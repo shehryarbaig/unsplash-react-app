@@ -1,4 +1,4 @@
-import { GET_IMAGE } from "./type"
+import { GET_IMAGE } from "./types"
 
 
 export const getImage = (url, fileName) => {

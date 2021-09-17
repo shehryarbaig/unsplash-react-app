@@ -1,4 +1,4 @@
-import { CHANGE_TAB } from "../actions/type";
+import { CHANGE_TAB } from "../actions/types";
 
 
 const INITIAL_STATE = {
