@@ -19,10 +19,10 @@ function a11yProps(index) {
 const ScrollableTabs = (props) => {
   const classes = useScrollableTabsStyle();
   const history = useHistory();
-  const tabHandler = useSelector(state => state.tabHandler);
-  const { activeTab } = tabHandler;
-  const topicsDataSetter = useSelector(state => state.topicsDataSetter);
-  const { topicsData } = topicsDataSetter;
+  const uiReducer = useSelector(state => state.UIReducer);
+  const { activeTab } = uiReducer;
+  const topicsDataSetterReducer = useSelector(state => state.topicsDataSetterReducer);
+  const { topicsData } = topicsDataSetterReducer;
   const dispatch = useDispatch();
 
   const handleChange = (event, activeTabNumber) => {

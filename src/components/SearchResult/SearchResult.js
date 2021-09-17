@@ -9,7 +9,7 @@ import { capitalizeFirstLetter } from '../../utils';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import { useQuery } from '../../utils';
 import { useSearchResultStyle } from './SearchResult.style';
-import { queryImagesSelector, querySelector } from '../../reducers/queryImagesDataReducer';
+import { queryImagesSelector, querySelector } from '../../reducers/queryReducer';
 
 const SearchResult = props => {
     const classes = useSearchResultStyle();

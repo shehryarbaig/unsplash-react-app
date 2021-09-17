@@ -6,7 +6,7 @@ const INITIAL_STATE = {
     likedImages:{}
 }
 
-const photoLikes = (state = INITIAL_STATE, action) => {
+const photoLikesReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SET_LIKED_PHOTOS_ID:
             switch(action.payload.page) {
@@ -33,13 +33,18 @@ const photoLikes = (state = INITIAL_STATE, action) => {
     }
 }
 
-export const likedImagesSelector = createSelector(
-    [state => state.photoLikes.likedImages],
-    (likedImages) => likedImages
-) 
-export const likedPhotosIdSelector = createSelector(
-    [(state) => state.photoLikes.likedPhotosId,],
-    (likedPhotosId) => likedPhotosId
+const photoLikesReducerSelector = createSelector(
+    [state => state.photoLikesReducer],
+    (photoLikesReducer) => photoLikesReducer
 ) 
 
-export default photoLikes;
+export const likedImagesSelector = createSelector(
+    [state => photoLikesReducerSelector(state)],
+    (photoLikesReducer) => photoLikesReducer.likedImages
+) 
+export const likedPhotosIdSelector = createSelector(
+    [(state) => photoLikesReducerSelector(state)],
+    (photoLikesReducer) => photoLikesReducer.likedPhotosId
+) 
+
+export default photoLikesReducer;

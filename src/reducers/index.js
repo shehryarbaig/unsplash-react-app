@@ -1,22 +1,22 @@
 import { combineReducers } from "redux";
-import tabHandler from "./tabHandlerReducer";
-import topicsDataSetter from "./topicsDataSetterReducer";
-import topicsImagesSetter from "./topicImagesSetterReducer";
-import queryImagesData from "./queryImagesDataReducer";
+import UIReducer from "./UIReducer";
+import topicsDataSetterReducer from "./topicsDataSetterReducer";
+import topicImagesSetterReducer from "./topicImagesSetterReducer";
+import queryReducer from "./queryReducer";
 import authReducer from "./authReducer";
-import photoLikes from "./photoLikesReducer";
-import profile from "./profileReducer"
-import homePageImages from "./homePageImagesReducer";
+import photoLikesReducer from "./photoLikesReducer";
+import profileReducer from "./profileReducer"
+import homePageReducer from "./homePageReducer";
 
 const reducers = combineReducers({
-    tabHandler,
-    topicsDataSetter,
-    topicsImagesSetter,
-    queryImagesData,
+    UIReducer,
+    topicsDataSetterReducer,
+    topicImagesSetterReducer,
+    queryReducer,
     authReducer,
-    photoLikes,
-    profile,
-    homePageImages
+    photoLikesReducer,
+    profileReducer,
+    homePageReducer
 });
 
 export default reducers;

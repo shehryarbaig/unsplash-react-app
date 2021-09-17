@@ -1,6 +1,6 @@
 import { call, put } from "redux-saga/effects";
 import { setLikedPhotosId, setToken } from "../../actions";
-import { requestGetToken } from "../requests/auth";
+import { requestGetToken } from "../../services/authRequests";
 
 export function* handleGetToken(action) {
   try {

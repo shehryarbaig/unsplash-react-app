@@ -14,8 +14,8 @@ import { likeButtonClick } from '../../actions/photoLikesActions';
 import {userProfileSelector} from "../../reducers/profileReducer"
 import { getImage } from '../../actions/imageActions';
 import { topicImagesSelector } from '../../reducers/topicImagesSetterReducer';
-import { queryImagesSelector } from '../../reducers/queryImagesDataReducer';
-import { homePageImagesSelector } from '../../reducers/homePageImagesReducer';
+import { queryImagesSelector } from '../../reducers/queryReducer';
+import { homePageImagesSelector } from '../../reducers/homePageReducer';
 import { useImageListStyle } from './ImagesList.style';
 
 

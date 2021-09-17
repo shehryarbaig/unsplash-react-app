@@ -6,7 +6,7 @@ const INITIAL_STATE = {
     queryImages: {}
 }
 
-const queryImagesData = (state = INITIAL_STATE, action) => {
+const queryReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SET_QUERY: return {
             ...state,
@@ -24,15 +24,21 @@ const queryImagesData = (state = INITIAL_STATE, action) => {
     }
 }
 
+const queryReducerSelector = createSelector(
+    [(state) => state.queryReducer],
+    (queryReducer) => queryReducer
+
+)
+
 export const queryImagesSelector = createSelector(
-    [(state) => state.queryImagesData.queryImages],
-    (queryImages) => queryImages
+    [(state) => queryReducerSelector(state)],
+    (queryReducer) => queryReducer.queryImages
 
 )
 
 export const querySelector = createSelector(
-    [(state) => state.queryImagesData.query],
-    (query) => query
+    [(state) => queryReducerSelector(state)],
+    (queryReducer) => queryReducer.query
 ) 
 
-export default queryImagesData;
+export default queryReducer;

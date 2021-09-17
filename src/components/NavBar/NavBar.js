@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { IconButton } from '@material-ui/core';
 import SearchBar from '../SearchBar';
-import { loginUrl } from '../../app/unsplash';
+import { loginUrl } from '../../app/settings';
 import { useNavBarStyles } from "./NavBar.style"
 import { logOutUser } from '../../actions/authActions';
 

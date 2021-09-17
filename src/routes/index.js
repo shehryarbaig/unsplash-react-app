@@ -19,8 +19,8 @@ const Routes = props => {
 
     const myState = useSelector((state) => state.authReducer);
 
-    const profile = useSelector(state=> state.profile);
-    const {userProfile} = profile;
+    const profileReducer = useSelector(state=> state.profileReducer);
+    const {userProfile} = profileReducer;
 
 
     useEffect(() => {
@@ -63,8 +63,8 @@ const Routes = props => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[myState.accessToken])
 
-    const topicsDataSetter = useSelector(state => state.topicsDataSetter);
-    const { topicsData } = topicsDataSetter;
+    const topicsDataSetterReducer = useSelector(state => state.topicsDataSetterReducer);
+    const { topicsData } = topicsDataSetterReducer;
 
     return (
         <Router>

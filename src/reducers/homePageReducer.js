@@ -5,7 +5,7 @@ const INITIAL_STATE = {
     homePageImages: {}
 }
 
-const homePageImages = (state = INITIAL_STATE, action) => {
+const homePageReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SET_HOME_PAGE_IMAGES: return {
             ...state,
@@ -19,9 +19,14 @@ const homePageImages = (state = INITIAL_STATE, action) => {
     }
 }
 
-export const homePageImagesSelector = createSelector(
-  [(state) => state.homePageImages.homePageImages],
-  (homePageImages) => homePageImages
+const homePageSelector = createSelector(
+  [(state) => state.homePageReducer],
+  (homePageReducer) => homePageReducer
 )
 
-export default homePageImages;
+export const homePageImagesSelector = createSelector(
+  [(state) => homePageSelector(state)],
+  (homePageReducer) => homePageReducer.homePageImages
+)
+
+export default homePageReducer;

@@ -1,10 +1,10 @@
-export {changeActiveTab} from "./tabHandlerActions";
+export {changeActiveTab} from "./UIActions";
 export {setTopicsData} from "./topicsDataSetterActions";
 export {setTopic} from "./topicsDataSetterActions";
-export {setQueryImages} from "./queryImagesDataActions";
-export {setQuery} from "./queryImagesDataActions";
-export {setNewQueryImages} from "./queryImagesDataActions";
-export {getQueryImages} from "./queryImagesDataActions";
-export {getNewQueryImages} from "./queryImagesDataActions";
+export {setQueryImages} from "./queryImagesActions";
+export {setQuery} from "./queryImagesActions";
+export {setNewQueryImages} from "./queryImagesActions";
+export {getQueryImages} from "./queryImagesActions";
+export {getNewQueryImages} from "./queryImagesActions";
 export { getToken, setToken } from "./authActions";
 export {setLikedPhotosId, getLikedPhotosId} from "./photoLikesActions";

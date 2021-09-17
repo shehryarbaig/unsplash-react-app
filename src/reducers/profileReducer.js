@@ -6,7 +6,7 @@ const INITIAL_STATE = {
     userProfile: {}
 }
 
-const profile = (state = INITIAL_STATE, action) => {
+const profileReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SET_MY_PROFILE: return {
                 ...state,
@@ -17,12 +17,12 @@ const profile = (state = INITIAL_STATE, action) => {
 }
 
 const profileSelector = createSelector(
-    [(state) => state.profile],
-    (Profile) => Profile
+    [(state) => state.profileReducer],
+    (profileReducer) => profileReducer
 ) 
 export const userProfileSelector = createSelector(
     [(state) => profileSelector(state)],
-    (profile) => profile.userProfile
+    (profileReducer) => profileReducer.userProfile
 ) 
 
-export default profile;
+export default profileReducer;

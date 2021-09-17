@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ACCESS_ID } from "../../config";
+import { ACCESS_ID } from "../app/config";
 
 export function requestGetTopics() {
     return axios.request({

@@ -3,7 +3,7 @@ import {
   redirectUri,
   clientId,
   clientSecret,
-} from "../../app/unsplash";
+} from "../app/settings";
 
 export function requestGetToken(code) {
   const formBody = `grant_type=authorization_code&code=${code}&redirect_uri=${redirectUri}&client_id=${clientId}&client_secret=${clientSecret}`;

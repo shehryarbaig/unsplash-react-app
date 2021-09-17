@@ -5,7 +5,7 @@ const INITIAL_STATE = {
     topicImages: {}
 }
 
-const topicsImagesSetter = (state = INITIAL_STATE, action) => {
+const topicImagesSetterReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SET_TOPIC_IMAGES: return {
             ...state,
@@ -19,10 +19,16 @@ const topicsImagesSetter = (state = INITIAL_STATE, action) => {
     }
 }
 
-export const topicImagesSelector = createSelector(
-  [(state) => state.topicsImagesSetter.topicImages],
-  (topicImages) => topicImages
+const topicImagesSetterReducerSelector = createSelector(
+  [(state) => state.topicImagesSetterReducer],
+  (topicImagesSetterReducer) => topicImagesSetterReducer
 
 ) 
 
-export default topicsImagesSetter;
+export const topicImagesSelector = createSelector(
+  [(state) => topicImagesSetterReducerSelector(state)],
+  (topicImagesSetterReducer) => topicImagesSetterReducer.topicImages
+
+) 
+
+export default topicImagesSetterReducer;

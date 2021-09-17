@@ -5,7 +5,7 @@ const INITIAL_STATE = {
     activeTab:0
 }
 
-const tabHandler = (state = INITIAL_STATE, action) => {
+const UIReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case CHANGE_TAB: return {
             ...state,
@@ -15,4 +15,4 @@ const tabHandler = (state = INITIAL_STATE, action) => {
     }
 }
 
-export default tabHandler;
+export default UIReducer;

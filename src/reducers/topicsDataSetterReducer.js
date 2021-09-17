@@ -6,7 +6,7 @@ const INITIAL_STATE = {
     topic: {},
 }
 
-const topicsDataSetter = (state = INITIAL_STATE, action) => {
+const topicsDataSetterReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SET_TOPICS_DATA: return {
             ...state,
@@ -20,10 +20,16 @@ const topicsDataSetter = (state = INITIAL_STATE, action) => {
     }
 }
 
-export const topicsDataSelector = createSelector(
-    [(state) => state.topicsDataSetter.topicsData],
-    (topicsData) => topicsData
+const topicsDataSetterReducerSelector = createSelector(
+    [(state) => state.topicsDataSetterReducer],
+    (topicsDataSetterReducer) => topicsDataSetterReducer
 
 ) 
 
-export default topicsDataSetter;
+export const topicsDataSelector = createSelector(
+    [(state) => topicsDataSetterReducerSelector(state)],
+    (topicsDataSetterReducer) => topicsDataSetterReducer.topicsData
+
+) 
+
+export default topicsDataSetterReducer;

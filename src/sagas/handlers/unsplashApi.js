@@ -2,11 +2,11 @@ import { call, put } from "@redux-saga/core/effects";
 import { normalize } from "normalizr";
 import { setQueryImages, setTopicsData, setNewQueryImages, setLikedPhotosId } from "../../actions";
 import { setTopicImages, setNewTopicImages } from "../../actions/topicsImagesSetterActions";
-import { requestGetTopicImages, requestGetTopics, requestGetQueryImages, requestGetUserProfile, requestGetLikedPhotos, requestGetHomePageImages, requestLikeButtonClick, requestGetImage } from "../requests/unsplashApi";
+import { requestGetTopicImages, requestGetTopics, requestGetQueryImages, requestGetUserProfile, requestGetLikedPhotos, requestGetHomePageImages, requestLikeButtonClick, requestGetImage } from "../../services/unsplashApiRequests";
 import { imagesSchema } from "../../imagesSchema";
 import { setUserProfile } from "../../actions/profileActions";
 import { getLikedPhotosId, setLikedImages, setNewLikedImages } from "../../actions/photoLikesActions";
-import { setHomePageImages, setNewHomePageImages } from "../../actions/homePageImagesActions";
+import { setHomePageImages, setNewHomePageImages } from "../../actions/homePageActions";
 import { downloadImage } from "../../utils";
 
 export function* handleGetTopics(action){
